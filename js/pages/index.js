@@ -1,161 +1,70 @@
-﻿$(function () {
-    //Get info usuario
-    if (localStorage.getItem('usuario') != null && localStorage.getItem("usuario") != "") {
-        console.log("Logado");
-        var usuario = getUsuario();
-        adm();
-        //Set aprovacoes (noticias)
-        getAllNoticias(true, true);
-        
-    } else
-        //Autentication by token
-        $.ajax({
-            type: "POST",
-            url: "https://tvgaspar-server.herokuapp.com/findByToken",
-            data: {
-                token: localStorage.getItem('token')
-            },
-            success: function (response) {
-                console.log(response);
-                $('.name').html(response[0].nome);
-                $('.email').html(response[0].email);
-                localStorage.setItem("usuario", JSON.stringify(response[0]));
-                adm();
-                getAllNoticias(true, true);
-            },
-            error: function (error) {
-                console.log(error.message);
-                logout('Sessão inválida. Faça o login novamente.');
-            }
-        });
-    
-    //Notification em caso de page reload
-    var not = localStorage.getItem('not');
-    if (not != null && not != "") {
-        showNotification(not, 'success');
-        localStorage.setItem('not', "");
-    }
+$(function () {
 
-    //Widgets count
-    $('.count-to').countTo();
-
-    //Sales count to
-    $('.sales-count-to').countTo({
-        formatter: function (value, options) {
-            return '$' + value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, ' ').replace('.', ',');
+    $('#sign_in').validate({
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.input-group').append(error);
         }
     });
 
-    initRealTimeChart();
-    initDonutChart();
-    initSparkline();
+    $('.page-loader-wrapper').fadeOut();
+    $('#sign_in').submit(function (e) {
+        if ($("#sign_in").valid()) {
+            localStorage.setItem("username", $('input[name="username"]').val());
+            localStorage.setItem("password", $('input[name="password"]').val())
+            console.log("Login efetuado com sucesso");
+            location.href = "pages/home/home.html";
+            e.preventDefault();
+        }
+    });
+
+
+    // if (localStorage.getItem('lembrarSenha') == "true" || localStorage.getItem('lembrarSenha') == true)
+    //     location.href = "../../index.html";
+    // else
+    //     $('.page-loader-wrapper').fadeOut();
+    // if (performance.navigation.type == 1 && localStorage.getItem('msgError') != "")
+    //     localStorage.setItem('msgError', "");
+
+    // $('#sign_in').submit(function (e) {
+    //     if ($("#sign_in").valid()) {
+    //         $('.page-loader-wrapper').fadeIn();
+    //         localStorage.setItem('lembrarSenha', $('input#rememberme').is(":checked"));
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "https://tvgaspar-server.herokuapp.com/login",
+    //             data: {
+    //                 login: $('input[name="username"]').val(),
+    //                 senha: $('input[name="password"]').val()
+    //             },
+    //             success: function (response) {
+    //                 console.log(response.message);
+    //                 if (response.success) {
+    //                     localStorage.setItem('token', response.token);
+    //                     localStorage.setItem('msgError', "");
+    //                     $('.page-loader-wrapper').fadeOut();
+    //                     location.href = "../../index.html";
+    //                 } else {
+    //                     localStorage.setItem('msgError', "Usuário ou senha inválido, tente novamente.");
+    //                     $(".msgError").html(localStorage.getItem('msgError'));
+    //                     $('.page-loader-wrapper').fadeOut();
+    //                 }
+    //             },
+    //             error: function (error) {
+    //                 console.log(error);
+    //                 $('.page-loader-wrapper').fadeOut();
+    //             }
+    //         });
+    //         e.preventDefault();
+    //     }
+    // });
+
+    // $(".msgError").html(localStorage.getItem('msgError'));
+
+
 });
-
-var realtime = 'on';
-
-function initRealTimeChart() {
-    //Real time ==========================================================================================
-    var plot = $.plot('#real_time_chart', [getRandomData()], {
-        series: {
-            shadowSize: 0,
-            color: 'rgb(0, 188, 212)'
-        },
-        grid: {
-            borderColor: '#f3f3f3',
-            borderWidth: 1,
-            tickColor: '#f3f3f3'
-        },
-        lines: {
-            fill: true
-        },
-        yaxis: {
-            min: 0,
-            max: 100
-        },
-        xaxis: {
-            min: 0,
-            max: 100
-        }
-    });
-
-    function updateRealTime() {
-        plot.setData([getRandomData()]);
-        plot.draw();
-
-        var timeout;
-        if (realtime === 'on') {
-            timeout = setTimeout(updateRealTime, 320);
-        } else {
-            clearTimeout(timeout);
-        }
-    }
-
-    updateRealTime();
-
-    $('#realtime').on('change', function () {
-        realtime = this.checked ? 'on' : 'off';
-        updateRealTime();
-    });
-    //====================================================================================================
-}
-
-function initSparkline() {
-    $(".sparkline").each(function () {
-        var $this = $(this);
-        $this.sparkline('html', $this.data());
-    });
-}
-
-function initDonutChart() {
-    Morris.Donut({
-        element: 'donut_chart',
-        data: [{
-                label: 'Chrome',
-                value: 37
-            }, {
-                label: 'Firefox',
-                value: 30
-            }, {
-                label: 'Safari',
-                value: 18
-            }, {
-                label: 'Opera',
-                value: 12
-            },
-            {
-                label: 'Other',
-                value: 3
-            }
-        ],
-        colors: ['rgb(233, 30, 99)', 'rgb(0, 188, 212)', 'rgb(255, 152, 0)', 'rgb(0, 150, 136)', 'rgb(96, 125, 139)'],
-        formatter: function (y) {
-            return y + '%'
-        }
-    });
-}
-
-var data = [],
-    totalPoints = 110;
-
-function getRandomData() {
-    if (data.length > 0) data = data.slice(1);
-
-    while (data.length < totalPoints) {
-        var prev = data.length > 0 ? data[data.length - 1] : 50,
-            y = prev + Math.random() * 10 - 5;
-        if (y < 0) {
-            y = 0;
-        } else if (y > 100) {
-            y = 100;
-        }
-
-        data.push(y);
-    }
-
-    var res = [];
-    for (var i = 0; i < data.length; ++i) {
-        res.push([i, data[i]]);
-    }
-
-    return res;
-}

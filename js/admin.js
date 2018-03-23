@@ -485,34 +485,35 @@ $(function () {
 
 //Função de logout do sistema
 var logout = function (msgError) {
-    console.log(msgError);
-    localStorage.setItem('token', "");
-    localStorage.setItem('usuario', "");
-    localStorage.setItem('tag', "");
-    localStorage.setItem('imagem', "");
-    localStorage.setItem('video', "");
-    localStorage.setItem('categoria', "");
-    localStorage.setItem('noticia', "");
-    localStorage.setItem('publicidade', "");
-    localStorage.setItem('aprovacao', "");
-    localStorage.setItem('not', "");
-    localStorage.setItem('tagEdit', "");
-    localStorage.setItem('imagemEdit', "");
-    localStorage.setItem('videoEdit', "");
-    localStorage.setItem('categoriaEdit', "");
-    localStorage.setItem('noticiaEdit', "");
-    localStorage.setItem('publicidadeEdit', "");
-    localStorage.setItem('lembrarSenha', "");
-    if (typeof msgError == "object")
-        localStorage.setItem('msgError', "");
-    else
-        localStorage.setItem('msgError', msgError);
+    // console.log(msgError);
+    // localStorage.setItem('token', "");
+    // localStorage.setItem('usuario', "");
+    // localStorage.setItem('tag', "");
+    // localStorage.setItem('imagem', "");
+    // localStorage.setItem('video', "");
+    // localStorage.setItem('categoria', "");
+    // localStorage.setItem('noticia', "");
+    // localStorage.setItem('publicidade', "");
+    // localStorage.setItem('aprovacao', "");
+    // localStorage.setItem('not', "");
+    // localStorage.setItem('tagEdit', "");
+    // localStorage.setItem('imagemEdit', "");
+    // localStorage.setItem('videoEdit', "");
+    // localStorage.setItem('categoriaEdit', "");
+    // localStorage.setItem('noticiaEdit', "");
+    // localStorage.setItem('publicidadeEdit', "");
+    // localStorage.setItem('lembrarSenha', "");
+    // if (typeof msgError == "object")
+    //     localStorage.setItem('msgError', "");
+    // else
+    //     localStorage.setItem('msgError', msgError);
 
+    localStorage.setItem("username", "");
     var path = location.pathname;
     if (path.indexOf('pages') >= 0)
-        location.href = "../examples/sign-in.html";
+        location.href = "../../index.html";
     else
-        location.href = "pages/examples/sign-in.html"
+        location.href = "index.html"
 }
 
 $('#logout').click(logout);
@@ -1148,15 +1149,8 @@ var initFirebase = function () {
 
 //Get info usuário (menu)
 var getUsuario = function () {
-    var usuario = JSON.parse(localStorage.getItem('usuario'));
-    if (usuario != null && usuario != "") {
-        $('.name').html(usuario.nome);
-        $('.email').html(usuario.email);
-
-    } else
-        logout('Sessão inválida. Faça o login novamente.');
-
-    return usuario;
+    $('.name').html(localStorage.getItem("username"));
+    $('.email').html(localStorage.getItem("username")+"@email.com");
 }
 
 //Get todas as notícias
