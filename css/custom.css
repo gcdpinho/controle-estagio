@@ -216,7 +216,7 @@ label#cor-error{
     display: none;
 }
 
-.col-sm-12.estagio{
+.col-sm-12.estagio, .col-sm-12.formatura{
     margin-top: 25px;
     margin-bottom: 25px !important;
 }
