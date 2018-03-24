@@ -34,6 +34,10 @@
     <!-- Bootstrap Select Css -->
     <link href="../../../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="../../../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet"
+    />
+
     <!-- Custom Css -->
     <link href="../../../../css/style.css" rel="stylesheet">
     <link href="../../../../css/custom.css" rel="stylesheet">
@@ -623,50 +627,49 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                            <h2 class="card-inside-title">Matrícula</h2>
-                            <form id="matricula" method="POST">
+                            <h2 class="card-inside-title">Período e Jornada</h2>
+                            <form id="periodo" method="POST">
                                 <div class="row clearfix">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="numero" required aria-required="true">
-                                                <label class="form-label">Número da matrícula</label>
+                                                <input type="text" class="datetimepicker form-control" name="dataInicial" asdrequired aria-required="true">
+                                                <label class="form-label">Data Inicial</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" class="datetimepicker form-control" name="dtCadastro" asdrequired aria-required="true">
+                                                <label class="form-label">Data Final</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row clearfix">
-                                    <div class="col-sm-12">
+                                    <p class="titulo subtitulo">Carga Horária</p>
+                                    <div class="col-sm-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="periodo" required aria-required="true">
-                                                <label class="form-label">Período letivo</label>
+                                                <input type="text" class="form-control" name="cargaDiaria" required aria-required="true">
+                                                <label class="form-label">Diária</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="cargaSemanal" required aria-required="true">
+                                                <label class="form-label">Semanal</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="semestre" required aria-required="true">
-                                                <label class="form-label">Semestre</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-md-3">
-                                        <p class="titulo">Dependência</p>
-                                        <select id="dependencia" class="form-control show-tick">
-                                            <option disabled selected value="">Escolha uma opção</option>
-                                            <option value="sim">Sim</option>
-                                            <option value="nao">Não</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <p class="titulo">Formado</p>
-                                        <select id="formado" class="form-control show-tick">
+                                    <div class="col-md-6">
+                                        <p class="titulo">Com este termo, ultrapassa 2 anos na mesa concedente</p>
+                                        <select id="doisAnos" class="form-control show-tick">
                                             <option disabled selected value="">Escolha uma opção</option>
                                             <option value="sim">Sim</option>
                                             <option value="nao">Não</option>
@@ -778,6 +781,12 @@
     <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
     <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
+    <!-- Moment Plugin Js -->
+    <script src="../../../../plugins/momentjs/moment.js"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="../../../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
     <!-- Jquery CountTo Plugin Js -->
     <script src="../../../../plugins/jquery-countto/jquery.countTo.js"></script>
 
@@ -809,7 +818,7 @@
 
     <!-- Custom Js -->
     <script src="../../../../js/admin.js"></script>
-    <script src="../../../../js/pages/contratos/cadastrar/matricula/matricula.js"></script>
+    <script src="../../../../js/pages/contratos/cadastrar/periodo/periodo.js"></script>
 
     <!-- Demo Js -->
     <script src="../../../../js/demo.js"></script>

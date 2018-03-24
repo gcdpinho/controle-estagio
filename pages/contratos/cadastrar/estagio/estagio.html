@@ -623,50 +623,71 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                            <h2 class="card-inside-title">Matrícula</h2>
-                            <form id="matricula" method="POST">
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="numero" required aria-required="true">
-                                                <label class="form-label">Número da matrícula</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="periodo" required aria-required="true">
-                                                <label class="form-label">Período letivo</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="semestre" required aria-required="true">
-                                                <label class="form-label">Semestre</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <h2 class="card-inside-title">Estágio</h2>
+                            <form id="estagio" method="POST">
                                 <div class="row clearfix">
                                     <div class="col-md-3">
-                                        <p class="titulo">Dependência</p>
-                                        <select id="dependencia" class="form-control show-tick">
+                                        <p class="titulo">Outro estágio em andamento</p>
+                                        <select id="outro" class="form-control show-tick">
                                             <option disabled selected value="">Escolha uma opção</option>
                                             <option value="sim">Sim</option>
                                             <option value="nao">Não</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <p class="titulo">Formado</p>
-                                        <select id="formado" class="form-control show-tick">
+                                        <p class="titulo">Agente de integração</p>
+                                        <select id="agente" class="form-control show-tick">
+                                            <option disabled selected value="">Escolha uma opção</option>
+                                            <option value="nao">Não</option>
+                                            <option value="CIEE">CIEE</option>
+                                            <option value="ABRH">ABRH</option>
+                                            <option value="Estagiar">Estagiar</option>
+                                            <option value="Eccos">Eccos</option>
+                                            <option value="Fundatec">Fundatec</option>
+                                            <option value="InCompany">InCompany</option>
+                                            <option value="Agiel">Agiel</option>
+                                            <option value="Companhia de estágios">Companhia de estágios</option>
+                                            <option value="UNIERGS">UNIERGS</option>
+                                            <option value="Banestágio">Banestágio</option>
+                                            <option value="Outro">Outro</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="titulo">Concedente</p>
+                                        <select i="concedente" class="form-control show-tick">
+                                            <option disabled selected value="">Escolha uma opção</option>
+                                            <option value="SANEP">SANEP</option>
+                                            <option value="CEEE-D">CEEE-D</option>
+                                            <option value="CEEE-GT">CEEE-GT</option>
+                                            <option value="Embrapa">Embrapa</option>
+                                            <option value="CRM">CRM</option>
+                                            <option value="IFSul">IFSul</option>
+                                            <option value="Empresa/prof. liberal">Empresa/prof. liberal</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-12 estagio">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="cidade" required aria-required="true">
+                                                <label class="form-label">Cidade</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-md-3">
+                                        <p class="titulo">Modalidade</p>
+                                        <select id="modalidade" class="form-control show-tick">
+                                            <option disabled selected value="">Escolha uma opção</option>
+                                            <option value="Obrigatório">Obrigatório</option>
+                                            <option value="Não-Obrigatório">Não-Obrigatório</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="titulo">Atividades na área</p>
+                                        <select id="area" class="form-control show-tick">
                                             <option disabled selected value="">Escolha uma opção</option>
                                             <option value="sim">Sim</option>
                                             <option value="nao">Não</option>
@@ -809,7 +830,7 @@
 
     <!-- Custom Js -->
     <script src="../../../../js/admin.js"></script>
-    <script src="../../../../js/pages/contratos/cadastrar/matricula/matricula.js"></script>
+    <script src="../../../../js/pages/contratos/cadastrar/estagio/estagio.js"></script>
 
     <!-- Demo Js -->
     <script src="../../../../js/demo.js"></script>

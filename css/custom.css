@@ -215,3 +215,17 @@ label#cor-error{
 .isAdm{
     display: none;
 }
+
+.col-sm-12.estagio{
+    margin-top: 25px;
+    margin-bottom: 25px !important;
+}
+
+p.titulo{
+    color: #aaa;
+}
+
+p.subtitulo{
+    padding-left: 15px;
+    margin-bottom: 20px !important;
+}
