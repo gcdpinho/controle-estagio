@@ -3,9 +3,25 @@ $(function () {
     getUsuario();
     requiredSelect();
 
+    var estagio = JSON.parse(localStorage.getItem('estagio'));
+    if (estagio != null) {
+        $('.selectpicker#outro').selectpicker('val', estagio.outro);
+        $('.selectpicker#agente').selectpicker('val', estagio.agente);
+        $('.selectpicker#concedente').selectpicker('val', estagio.concedente);
+        $('input[name="cidade"]').val(estagio.cidade);
+        $('input[name="cidade"]').focus();
+        $('.selectpicker#modalidade').selectpicker('val', estagio.modalidade);
+        $('.selectpicker#area').selectpicker('val', estagio.area);
+    }
+
     if ($('.selectpicker').val() == null)
         $('.selectpicker').parents('.form-line').removeClass('focused');
-
+    else {
+        $('.selectpicker').parents('.form-line').each(function (e) {
+            if (!$(this).hasClass('focused'))
+                $(this).addClass('focused');
+        });
+    }
 
     $('.selectpicker').on('changed.bs.select', function (e) {
         if (!$(this).parents('.form-line').hasClass('focused')) {

@@ -5,7 +5,12 @@ $(function () {
 
     if ($('.selectpicker').val() == null)
         $('.selectpicker').parents('.form-line').removeClass('focused');
-
+    else {
+        $('.selectpicker').parents('.form-line').each(function (e) {
+            if (!$(this).hasClass('focused'))
+                $(this).addClass('focused');
+        });
+    }
 
     $('.selectpicker').on('changed.bs.select', function (e) {
         if (!$(this).parents('.form-line').hasClass('focused')) {
@@ -26,9 +31,6 @@ $(function () {
                 requiredSelect: true
             },
             obrigatorio12: {
-                requiredSelect: true
-            },
-            renovadoOrientador: {
                 requiredSelect: true
             }
         },

@@ -343,7 +343,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li class="active">
-                                <a href="matricula.html">Cadastrar</a>
+                                <a class="goBack" href="javascript:void(0);">Cadastrar</a>
                             </li>
                             <!-- <li>
                                 <a href="../noticia/listar.html">Listar</a>
@@ -629,7 +629,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="numero" required aria-required="true">
+                                                <input type="number" class="form-control" name="numero" required aria-required="true">
                                                 <label class="form-label">Número da matrícula</label>
                                             </div>
                                         </div>
@@ -649,14 +649,14 @@
                                     <div class="col-sm-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="semestre" required aria-required="true">
+                                                <input type="number" class="form-control" name="semestre" required aria-required="true">
                                                 <label class="form-label">Semestre</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row clearfix">
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <p class="titulo">Dependência</p>
@@ -668,10 +668,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <p class="titulo">Formado</p>
+                                                <p class="titulo">Já conclui a parte teórica do curso?</p>
                                                 <select id="formado" name="formado" class="form-control show-tick selectpicker">
                                                     <option disabled selected value="">Escolha uma opção</option>
                                                     <option value="sim">Sim</option>
@@ -743,6 +743,23 @@
             </div> -->
         </div>
     </section>
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">Atenção</h4>
+                </div>
+                <div class="modal-body">
+                    Você deseja ir para o início do cadastro?
+                </div>
+                <div id="modalId"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn waves-effect btn-danger confirmBack">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- <div class="background-table"></div>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover js-basic-example dataTable imagem">
@@ -808,6 +825,9 @@
 
     <!-- Sparkline Chart Plugin Js -->
     <script src="../../../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
+    <!-- Input Mask Plugin Js -->
+    <script src="../../../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
 
     <!-- Firebase Plugin Js -->
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>

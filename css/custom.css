@@ -217,15 +217,36 @@ label#cor-error{
 }
 
 .col-sm-12.estagio, .col-sm-12.formatura{
-    margin-top: 25px;
-    margin-bottom: 25px !important;
+    margin-top: 5px;
+    margin-bottom: 15px !important;
 }
 
 p.titulo{
     color: #aaa;
+    margin: 3px 0 0 0;
+    font-size: 12px;
 }
 
 p.subtitulo{
-    padding-left: 15px;
     margin-bottom: 20px !important;
+}
+
+button.btn.dropdown-toggle.btn-default{
+    padding: 12px 0 0 0;
+}
+
+.noSelect{
+    margin-bottom: 37px !important;
+}
+
+.noPaddingRight{
+    padding-right: 0;
+}
+
+.noPaddingLeft{
+    padding-left: 0;
+}
+
+.card.resultado{
+    box-shadow: none;
 }

@@ -343,7 +343,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li class="active">
-                                <a href="matricula.html">Cadastrar</a>
+                                <a class="goBack" href="javascript:void(0);">Cadastrar</a>
                             </li>
                             <!-- <li>
                                 <a href="../noticia/listar.html">Listar</a>
@@ -626,7 +626,8 @@
                             <h2 class="card-inside-title">Aluno</h2>
                             <form id="aluno" method="POST">
                                 <div class="row clearfix">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-9">
+                                        <p style="visibility: hidden; margin:0">Idade</p>
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" class="form-control" name="nome" required aria-required="true">
@@ -634,8 +635,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
                                     <div class="col-md-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -711,6 +710,23 @@
             </div> -->
         </div>
     </section>
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">Atenção</h4>
+                </div>
+                <div class="modal-body">
+                    Você deseja ir para o início do cadastro?
+                </div>
+                <div id="modalId"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn waves-effect btn-danger confirmBack">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- <div class="background-table"></div>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover js-basic-example dataTable imagem">

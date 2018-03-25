@@ -3,8 +3,21 @@ $(function () {
     getUsuario();
     requiredSelect();
 
+    var aluno = JSON.parse(localStorage.getItem('aluno'));
+    if (aluno != null){
+        $('input[name="nome"]').val(aluno.nome);
+        $('input[name="nome"]').focus();
+        $('.selectpicker#idade').selectpicker('val', aluno.idade);
+    }
+
     if ($('.selectpicker').val() == null)
         $('.selectpicker').parents('.form-line').removeClass('focused');
+    else {
+        $('.selectpicker').parents('.form-line').each(function(e){
+            if (!$(this).hasClass('focused'))
+                $(this).addClass('focused');
+        });
+    }
 
 
     $('.selectpicker').on('changed.bs.select', function (e) {

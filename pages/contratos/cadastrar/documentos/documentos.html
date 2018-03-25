@@ -343,7 +343,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li class="active">
-                                <a href="documentos.html">Cadastrar</a>
+                                <a class="goBack" href="javascript:void(0);">Cadastrar</a>
                             </li>
                             <!-- <li>
                                 <a href="../noticia/listar.html">Listar</a>
@@ -626,7 +626,7 @@
                             <h2 class="card-inside-title">Documentos</h2>
                             <form id="documentos" method="POST">
                                 <div class="row clearfix">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <p class="titulo">Tipo</p>
@@ -638,27 +638,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <p class="titulo subtitulo">Nº de Vias</p>
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="termos" required aria-required="true">
-                                                <label class="form-label">Termos</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="pas" required aria-required="true">
-                                                <label class="form-label">PAs</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
                                     <div class="col-md-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -673,7 +652,28 @@
                                     </div>
                                 </div>
                                 <div class="row clearfix">
-                                    <div class="col-md-3">
+                                    <div class="col-sm-12">
+                                        <p class="titulo subtitulo">Nº de Vias</p>
+                                        <div class="col-sm-6 noPaddingLeft">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="number" class="form-control" name="termos" required aria-required="true">
+                                                    <label class="form-label">Termos</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 noPaddingRight">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="number" class="form-control" name="pas" required aria-required="true">
+                                                    <label class="form-label">PAs</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-md-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <p class="titulo">Devidamente assinados</p>
@@ -685,9 +685,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <p class="titulo">Dados certos</p>
@@ -762,6 +760,87 @@
             </div> -->
         </div>
     </section>
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">Atenção</h4>
+                </div>
+                <div class="modal-body">
+                    Você deseja ir para o início do cadastro?
+                </div>
+                <div id="modalId"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn waves-effect btn-danger confirmBack">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="background-table"></div>
+    <div class="table-responsive">
+        <div class="card resultado">
+            <h2 class="card-inside-title">Resultado</h2>
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <div class="form-group form-float">
+                        <div class="form-line focused">
+                            <input type="text" class="form-control" name="manchete" disabled>
+                            <label class="form-label">Manchete</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <div class="form-group form-float">
+                        <div class="form-line focused">
+                            <input type="text" class="form-control" name="subManchete" disabled>
+                            <label class="form-label">Submanchete</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line focused">
+                            <input type="text" class="form-control" name="autor" disabled>
+                            <label class="form-label">Autor</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line focused">
+                            <input type="text" class="form-control" name="dtCadastro" disabled>
+                            <label class="form-label">Data</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <div class="form-group form-float tinymce">
+                        <div class="form-line focused">
+                            <textarea id="tinymce" class="form-control" name="texto" disabled></textarea>
+                            <label class="form-label tinymce">Texto</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <div class="save-button col-lg-3">
+                        <button type="button" class="btn btn-block btn-lg btn-danger waves-effect">NÃO RECEBER</button>
+                    </div>
+                    <div class="save-button col-lg-3">
+                        <button type="button" class="btn btn-block btn-lg btn-primary waves-effect">RECEBER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- <div class="background-table"></div>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover js-basic-example dataTable imagem">

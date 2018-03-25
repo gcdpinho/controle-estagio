@@ -21,10 +21,26 @@ $(function () {
         $(this).valid();
     });
 
+    var naoObrigatorio = JSON.parse(localStorage.getItem('naoObrigatorio'));
+    if (naoObrigatorio != null) {
+        $('.selectpicker#auxTransp').selectpicker('val', naoObrigatorio.auxTransp);
+        $('.selectpicker#horarioDist').selectpicker('val', naoObrigatorio.horarioDist);
+        $('input[name="formatura"]').val(naoObrigatorio.formatura);
+        $('input[name="formatura"]').parents('.form-line').addClass('focused');
+        $('.selectpicker#repFalta').selectpicker('val', naoObrigatorio.repFalta);
+        $('.selectpicker#rep50').selectpicker('val', naoObrigatorio.rep50);
+    }
+
     requiredSelect();
 
     if ($('.selectpicker').val() == null)
         $('.selectpicker').parents('.form-line').removeClass('focused');
+    else {
+        $('.selectpicker').parents('.form-line').each(function(e){
+            if (!$(this).hasClass('focused'))
+                $(this).addClass('focused');
+        });
+    }
 
 
     $('.selectpicker').on('changed.bs.select', function (e) {
@@ -46,12 +62,6 @@ $(function () {
                 requiredSelect: true
             },
             horarioDist: {
-                requiredSelect: true
-            },
-            repFalta: {
-                requiredSelect: true
-            },
-            rep50: {
                 requiredSelect: true
             }
         },

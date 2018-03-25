@@ -507,11 +507,10 @@ var logout = function (msgError) {
     //     localStorage.setItem('msgError', "");
     // else
     //     localStorage.setItem('msgError', msgError);
-
-    localStorage.setItem("username", "");
+    localStorage.clear();
     var path = location.pathname;
     if (path.indexOf('pages') >= 0)
-        location.href = "../../index.html";
+        location.href = "../../../../index.html";
     else
         location.href = "index.html"
 }
@@ -612,7 +611,7 @@ var registerMessage = function (response, form, text, notification) {
 
 var requiredSelect = function () {
     $.validator.addMethod("requiredSelect", function (value, element, config) {
-        return $('.selectpicker#'+$(element).attr('id')).val() != null;
+        return $('.selectpicker#' + $(element).attr('id')).val() != null;
     }, "Escolha uma opção.");
 
 }
@@ -1235,6 +1234,15 @@ var getAllPublicidades = function () {
 //Cancel button edit page
 $('.btn-cancel').click(function () {
     location.href = "listar.html";
+});
+
+$('.goBack').click(function () {
+    $('#defaultModal').modal('show');
+});
+
+
+$('.confirmBack').click(function () {
+    location.href = "../aluno/aluno.html";
 });
 
 //Permissão de adm para todos os elementos de classe isAdm

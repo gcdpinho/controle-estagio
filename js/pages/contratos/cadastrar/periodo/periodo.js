@@ -21,12 +21,29 @@ $(function () {
         $(this).valid();
     });
 
+    var periodo = JSON.parse(localStorage.getItem('periodo'));
+    if (periodo != null) {
+        $('input[name="dataInicial"]').val(periodo.dataInicial);
+        $('input[name="dataInicial"]').parents('.form-line').addClass('focused');
+        $('input[name="dataFinal"]').val(periodo.dataFinal);
+        $('input[name="dataFinal"]').parents('.form-line').addClass('focused');
+        $('input[name="cargaDiaria"]').val(periodo.cargaHorario.cargaDiaria);
+        $('input[name="cargaDiaria"]').focus();
+        $('input[name="cargaSemanal"]').val(periodo.cargaHorario.cargaSemanal);
+        $('input[name="cargaSemanal"]').focus();
+        $('.selectpicker#doisAnos').selectpicker('val', periodo.doisAnos);
+    }
 
     requiredSelect();
 
     if ($('.selectpicker').val() == null)
         $('.selectpicker').parents('.form-line').removeClass('focused');
-
+    else {
+        $('.selectpicker').parents('.form-line').each(function (e) {
+            if (!$(this).hasClass('focused'))
+                $(this).addClass('focused');
+        });
+    }
 
     $('.selectpicker').on('changed.bs.select', function (e) {
         if (!$(this).parents('.form-line').hasClass('focused')) {

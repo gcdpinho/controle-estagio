@@ -26,11 +26,30 @@ $(function () {
     });
 
 
+    var seguro = JSON.parse(localStorage.getItem('seguro'));
+    if (seguro != null) {
+        $('.selectpicker#cargo').selectpicker('val', seguro.cargo);
+        $('input[name="vigenciaDataInicial"]').val(seguro.vigencia.vigenciaDataInicial);
+        $('input[name="vigenciaDataInicial"]').parents('.form-line').addClass('focused');
+        $('input[name="vigenciaDataFinal"]').val(seguro.vigencia.vigenciaDataFinal);
+        $('input[name="vigenciaDataFinal"]').parents('.form-line').addClass('focused');
+        $('input[name="capitalSegurado"]').val(seguro.capitalSegurado);
+        $('input[name="capitalSegurado"]').parents('.form-line').addClass('focused');
+        $('.selectpicker#mac').selectpicker('val', seguro.coberturas.mac);
+        $('.selectpicker#ipa').selectpicker('val', seguro.coberturas.ipa);
+        $('.selectpicker#entregouApoliceProposta').selectpicker('val', seguro.entregouApoliceProposta);
+    }
+
     requiredSelect();
 
     if ($('.selectpicker').val() == null)
         $('.selectpicker').parents('.form-line').removeClass('focused');
-
+    else {
+        $('.selectpicker').parents('.form-line').each(function (e) {
+            if (!$(this).hasClass('focused'))
+                $(this).addClass('focused');
+        });
+    }
 
     $('.selectpicker').on('changed.bs.select', function (e) {
         if (!$(this).parents('.form-line').hasClass('focused')) {
