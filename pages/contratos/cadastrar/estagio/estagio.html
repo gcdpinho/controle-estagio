@@ -627,43 +627,56 @@
                             <form id="estagio" method="POST">
                                 <div class="row clearfix">
                                     <div class="col-md-3">
-                                        <p class="titulo">Outro estágio em andamento</p>
-                                        <select id="outro" class="form-control show-tick">
-                                            <option disabled selected value="">Escolha uma opção</option>
-                                            <option value="sim">Sim</option>
-                                            <option value="nao">Não</option>
-                                        </select>
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <p class="titulo">Outro estágio em andamento</p>
+                                                <select id="outro" name="outro" class="form-control show-tick selectpicker">
+                                                    <option disabled selected value="">Escolha uma opção</option>
+                                                    <option value="sim">Sim</option>
+                                                    <option value="nao">Não</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <p class="titulo">Agente de integração</p>
-                                        <select id="agente" class="form-control show-tick">
-                                            <option disabled selected value="">Escolha uma opção</option>
-                                            <option value="nao">Não</option>
-                                            <option value="CIEE">CIEE</option>
-                                            <option value="ABRH">ABRH</option>
-                                            <option value="Estagiar">Estagiar</option>
-                                            <option value="Eccos">Eccos</option>
-                                            <option value="Fundatec">Fundatec</option>
-                                            <option value="InCompany">InCompany</option>
-                                            <option value="Agiel">Agiel</option>
-                                            <option value="Companhia de estágios">Companhia de estágios</option>
-                                            <option value="UNIERGS">UNIERGS</option>
-                                            <option value="Banestágio">Banestágio</option>
-                                            <option value="Outro">Outro</option>
-                                        </select>
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <p class="titulo">Agente de integração</p>
+                                                <select id="agente" name="agente" class="form-control show-tick selectpicker">
+                                                    <option disabled selected value="">Escolha uma opção</option>
+                                                    <option value="nao">Não</option>
+                                                    <option value="CIEE">CIEE</option>
+                                                    <option value="ABRH">ABRH</option>
+                                                    <option value="Estagiar">Estagiar</option>
+                                                    <option value="Eccos">Eccos</option>
+                                                    <option value="Fundatec">Fundatec</option>
+                                                    <option value="InCompany">InCompany</option>
+                                                    <option value="Agiel">Agiel</option>
+                                                    <option value="Companhia de estágios">Companhia de estágios</option>
+                                                    <option value="UNIERGS">UNIERGS</option>
+                                                    <option value="Banestágio">Banestágio</option>
+                                                    <option value="Outro">Outro</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <p class="titulo">Concedente</p>
-                                        <select i="concedente" class="form-control show-tick">
-                                            <option disabled selected value="">Escolha uma opção</option>
-                                            <option value="SANEP">SANEP</option>
-                                            <option value="CEEE-D">CEEE-D</option>
-                                            <option value="CEEE-GT">CEEE-GT</option>
-                                            <option value="Embrapa">Embrapa</option>
-                                            <option value="CRM">CRM</option>
-                                            <option value="IFSul">IFSul</option>
-                                            <option value="Empresa/prof. liberal">Empresa/prof. liberal</option>
-                                        </select>
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <p class="titulo">Concedente</p>
+                                                <select id="concedente" name="concedente" class="form-control show-tick selectpicker">
+                                                    <option disabled selected value="">Escolha uma opção</option>
+                                                    <option value="SANEP">SANEP</option>
+                                                    <option value="CEEE-D">CEEE-D</option>
+                                                    <option value="CEEE-GT">CEEE-GT</option>
+                                                    <option value="Embrapa">Embrapa</option>
+                                                    <option value="CRM">CRM</option>
+                                                    <option value="IFSul">IFSul</option>
+                                                    <option value="Empresa/prof. liberal">Empresa/prof. liberal</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row clearfix">
@@ -678,20 +691,28 @@
                                 </div>
                                 <div class="row clearfix">
                                     <div class="col-md-3">
-                                        <p class="titulo">Modalidade</p>
-                                        <select id="modalidade" class="form-control show-tick">
-                                            <option disabled selected value="">Escolha uma opção</option>
-                                            <option value="Obrigatório">Obrigatório</option>
-                                            <option value="Não-Obrigatório">Não-Obrigatório</option>
-                                        </select>
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <p class="titulo">Modalidade</p>
+                                                <select id="modalidade" name="modalidade" class="form-control show-tick selectpicker">
+                                                    <option disabled selected value="">Escolha uma opção</option>
+                                                    <option value="Obrigatório">Obrigatório</option>
+                                                    <option value="Não-Obrigatório">Não-Obrigatório</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <p class="titulo">Atividades na área</p>
-                                        <select id="area" class="form-control show-tick">
-                                            <option disabled selected value="">Escolha uma opção</option>
-                                            <option value="sim">Sim</option>
-                                            <option value="nao">Não</option>
-                                        </select>
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <p class="titulo">Atividades na área</p>
+                                                <select id="area" name="area" class="form-control show-tick selectpicker">
+                                                    <option disabled selected value="">Escolha uma opção</option>
+                                                    <option value="sim">Sim</option>
+                                                    <option value="nao">Não</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row clearfix">

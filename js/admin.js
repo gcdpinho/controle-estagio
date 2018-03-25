@@ -610,6 +610,13 @@ var registerMessage = function (response, form, text, notification) {
     return true;
 }
 
+var requiredSelect = function () {
+    $.validator.addMethod("requiredSelect", function (value, element, config) {
+        return $('.selectpicker#'+$(element).attr('id')).val() != null;
+    }, "Escolha uma opção.");
+
+}
+
 //Get todas as tags
 var getAllTags = function (close, listar) {
     $.validator.addMethod("invalidTag", function (value, element, config) {
@@ -1150,7 +1157,7 @@ var initFirebase = function () {
 //Get info usuário (menu)
 var getUsuario = function () {
     $('.name').html(localStorage.getItem("username"));
-    $('.email').html(localStorage.getItem("username")+"@email.com");
+    $('.email').html(localStorage.getItem("username") + "@email.com");
 }
 
 //Get todas as notícias
@@ -1231,7 +1238,7 @@ $('.btn-cancel').click(function () {
 });
 
 //Permissão de adm para todos os elementos de classe isAdm
-var adm = function(){
+var adm = function () {
     var usuario = JSON.parse(localStorage.getItem('usuario'));
     if (usuario.isAdm == 1)
         $('.isAdm').css('display', 'block');

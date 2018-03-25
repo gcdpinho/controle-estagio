@@ -624,32 +624,25 @@
                     <div class="card">
                         <div class="body">
                             <h2 class="card-inside-title">Obrigatório</h2>
-                            <form id="seObrigatorio" method="POST">
+                            <form id="obrigatorio" method="POST">
                                 <div class="row clearfix">
                                     <div class="col-md-6">
-                                        <p class="titulo">Já entregou o relatório final?</p>
-                                        <select id="relatorioFinal" class="form-control show-tick">
-                                            <option disabled selected value="">Escolha uma opção</option>
-                                            <option value="sim">Sim</option>
-                                            <option value="nao">Não</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p class="titulo">Com este termo, ultrapassa 12 meses de obrigatório?</p>
-                                        <select id="12obrigatorio" class="form-control show-tick">
-                                            <option disabled selected value="">Escolha uma opção</option>
-                                            <option value="sim">Sim</option>
-                                            <option value="nao">Não</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <p class="titulo subtitulo">Se Renovado</p>
-                                    <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <p class="titulo">Mesmo orientador</p>
-                                                <select id="renovadoOrientador" class="form-control show-tick">
+                                                <p class="titulo">Já entregou o relatório final?</p>
+                                                <select id="relatorioFinal" name="relatorioFinal" class="form-control show-tick selectpicker">
+                                                    <option disabled selected value="">Escolha uma opção</option>
+                                                    <option value="sim">Sim</option>
+                                                    <option value="nao">Não</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <p class="titulo">Com este termo, ultrapassa 12 meses de obrigatório?</p>
+                                                <select id="obrigatorio12" name="obrigatorio12" class="form-control show-tick selectpicker">
                                                     <option disabled selected value="">Escolha uma opção</option>
                                                     <option value="sim">Sim</option>
                                                     <option value="nao">Não</option>
@@ -659,7 +652,22 @@
                                     </div>
                                 </div>
                                 <div class="row clearfix">
-                                    <div class="col-sm-6">
+                                    <p class="titulo subtitulo">Se Renovado</p>
+                                    <div class="col-sm-3">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <p class="titulo">Mesmo orientador</p>
+                                                <select id="renovadoOrientador" name="renovadoOrientador" class="form-control show-tick selectpicker">
+                                                    <option disabled selected value="">Escolha uma opção</option>
+                                                    <option value="sim">Sim</option>
+                                                    <option value="nao">Não</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" class="form-control" name="diasUteis" required aria-required="true">
@@ -673,7 +681,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="cargaCalculada" required aria-required="true" disabled>
+                                                <input type="text" class="form-control" name="cargaCalculada" disabled>
                                                 <label class="form-label">Calculada</label>
                                             </div>
                                         </div>
@@ -681,7 +689,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="cargaMinima" required aria-required="true" disabled>
+                                                <input type="text" class="form-control" name="cargaMinima" disabled>
                                                 <label class="form-label">Mínima</label>
                                             </div>
                                         </div>
