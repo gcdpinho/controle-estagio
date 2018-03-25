@@ -1251,3 +1251,35 @@ var adm = function () {
     if (usuario.isAdm == 1)
         $('.isAdm').css('display', 'block');
 };
+
+var getCargaMinima = function () {
+    var curso = JSON.parse(localStorage.getItem('curso'));
+    if (curso.modalidade == "Integrado")
+        return 300;
+    else if (curso.sigla == "EDI" && curso.modalidade == "Concomitante") {
+        return 280;
+    } else if (curso.sigla == "DMV")
+        return 200;
+    else if (curso.sigla == "MEC")
+        return 270;
+    else if (curso.sigla == "CVI")
+        return 200;
+    else if (curso.sigla == "TEC")
+        return 270;
+    else if (curso.sigla == "TEL")
+        return 270;
+    else if (curso.sigla == "RES-EJA")
+        return 240;
+    else if (curso.sigla == "TSA")
+        return 220;
+    else if (curso.sigla == "TGA")
+        return 220;
+    else if (curso.sigla == "EE")
+        return 160;
+    else if (curso.sigla == "TAI")
+        return 240;
+    else if (curso.sigla == "EQ")
+        return 160;
+    else
+        return 300;
+}

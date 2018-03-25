@@ -3,15 +3,6 @@ $(function () {
     getUsuario();
     requiredSelect();
 
-    if ($('.selectpicker').val() == null)
-        $('.selectpicker').parents('.form-line').removeClass('focused');
-    else {
-        $('.selectpicker').parents('.form-line').each(function (e) {
-            if (!$(this).hasClass('focused'))
-                $(this).addClass('focused');
-        });
-    }
-
     $('.selectpicker').on('changed.bs.select', function (e) {
         if (!$(this).parents('.form-line').hasClass('focused')) {
             $(this).parents('.form-line').addClass('focused');
@@ -23,7 +14,40 @@ $(function () {
             $(this).focusout();
         }
     });
+    var periodo = JSON.parse(localStorage.getItem('periodo'));
 
+    $('input[name="diasUteis"]').on('input', function () {
+        if ($(this).val() != "") {
+            $('input[name="cargaCalculada"]').val($(this).val() * periodo.cargaHorario.cargaDiaria)
+            $('input[name="cargaCalculada"]').parents('.form-line').addClass('focused');
+        }
+    });
+
+    var obrigatorio = JSON.parse(localStorage.getItem('obrigatorio'));
+
+    if (obrigatorio != null) {
+        $('.selectpicker#relatorioFinal').selectpicker('val', obrigatorio.relatorioFinal);
+        $('.selectpicker#obrigatorio12').selectpicker('val', obrigatorio.obrigatorio12);
+        $('.selectpicker#renovadoOrientador').selectpicker('val', obrigatorio.renovando.renovadoOrientador);
+        $('input[name="diasUteis"]').val(obrigatorio.diasUteis);
+        $('input[name="diasUteis"]').focus();
+        if (obrigatorio.diasUteis != null) {
+            $('input[name="cargaCalculada"]').val(obrigatorio.diasUteis * periodo.cargaHorario.cargaDiaria)
+            $('input[name="cargaCalculada"]').parents('.form-line').addClass('focused');
+        }
+    }
+
+    $('input[name="cargaMinima"]').val(getCargaMinima());
+    $('input[name="cargaMinima"]').parents('.form-line').addClass('focused');
+
+    if ($('.selectpicker').val() == null)
+        $('.selectpicker').parents('.form-line').removeClass('focused');
+    else {
+        $('.selectpicker').parents('.form-line').each(function (e) {
+            if (!$(this).hasClass('focused'))
+                $(this).addClass('focused');
+        });
+    }
 
     $('#obrigatorio').validate({
         rules: {
