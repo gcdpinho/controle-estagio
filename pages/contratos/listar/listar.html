@@ -5,41 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Cadastro | Controle de contratos de estágio</title>
+    <title>Listar | Controle de contratos de estágio</title>
     <!-- Favicon-->
-    <link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="../../../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="../../../../plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="../../../plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="../../../../plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="../../../plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Dropzone Css -->
+    <link href="../../../plugins/dropify/dropify.css" rel="stylesheet">
 
     <!-- JQuery DataTable Css -->
-    <link href="../../../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="../../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
 
     <!-- Custom Css -->
-    <link href="../../../../css/style.css" rel="stylesheet">
+    <link href="../../../css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="../../../../css/themes/all-themes.css" rel="stylesheet" />
-
-    <!-- Bootstrap Select Css -->
-    <link href="../../../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="../../../css/themes/all-themes.css" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="../../../../css/style.css" rel="stylesheet">
-    <link href="../../../../css/custom.css" rel="stylesheet">
+    <link href="../../../css/style.css" rel="stylesheet">
+    <link href="../../../css/custom.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="../../../../css/themes/all-themes.css" rel="stylesheet" />
+    <link href="../../../css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
 <body class="theme-red">
@@ -80,7 +83,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="../../index.html">CONTROLE DE CONTRATOS DE ESTÁGIO</a>
+                <a class="navbar-brand" href="../../index.html">ÁREA ADMINISTRATIVA - TV GASPAR</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -298,7 +301,7 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="../../../../images/user.png" width="48" height="48" alt="User" />
+                    <img src="../../../images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
@@ -307,7 +310,7 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
                             <li>
-                                <a href="perfil.html">
+                                <a href="../perfil/perfil.html">
                                     <i class="material-icons">person</i>Perfil</a>
                             </li>
                             <!--
@@ -331,7 +334,7 @@
                 <ul class="list">
                     <li class="header">MENU</li>
                     <li>
-                        <a href="../../../home/home.html">
+                        <a href="../../home/home.html">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
@@ -342,39 +345,40 @@
                             <span>Contrato de Estágio</span>
                         </a>
                         <ul class="ml-menu">
-                            <li class="active">
-                                <a class="goBack" href="javascript:void(0);">Cadastrar</a>
-                            </li>
                             <li>
-                                <a href="../../listar/listar.html">Listar</a>
+                                <a href="../cadastrar/aluno/aluno.html">Cadastrar</a>
+                            </li>
+                            <li class="active">
+                                <a href="../contratos/listar/listar.html">Listar</a>
                             </li>
                         </ul>
                     </li>
-                    <!-- <li>
+                    <!--
+                    <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">ring_volume</i>
                             <span>Publicidade</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="cadastrar.html">Cadastrar</a>
+                                <a href="../publicidade/cadastrar.html">Cadastrar</a>
                             </li>
                             <li>
-                                <a href="listar.html">Listar</a>
+                                <a href="../publicidade/listar.html">Listar</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">insert_photo</i>
                             <span>Imagem</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="../imagem/cadastrar.html">Cadastrar</a>
+                                <a href="cadastrar.html">Cadastrar</a>
                             </li>
-                            <li>
-                                <a href="../imagem/listar.html">Listar</a>
+                            <li class="active">
+                                <a href="listar.html">Listar</a>
                             </li>
                         </ul>
                     </li>
@@ -424,10 +428,10 @@
                         <a href="../aprovacao/aprovacao.html">
                             <i class="material-icons">done</i>
                             <span>Aprovações</span>
-                            <span class="badge">2</span>
+                            <span class="badge">0</span>
                         </a>
-                    </li>
-                </ul> -->
+                    </li> -->
+                </ul>
             </div>
             <!-- #Menu -->
             <!-- Footer -->
@@ -616,147 +620,25 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>CADASTRAR</h2>
+                <h2>LISTA DE CONTRATOS</h2>
             </div>
             <!-- Input -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                            <h2 class="card-inside-title">Obrigatório</h2>
-                            <form id="obrigatorio" method="POST">
-                                <div class="row clearfix">
-                                    <div class="col-md-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <p class="titulo">Já entregou o relatório final?</p>
-                                                <select id="relatorioFinal" name="relatorioFinal" class="form-control show-tick selectpicker">
-                                                    <option disabled selected value="">Escolha uma opção</option>
-                                                    <option value="sim">Sim</option>
-                                                    <option value="não">Não</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <p class="titulo">Com este termo, ultrapassa 12 meses de obrigatório?</p>
-                                                <select id="obrigatorio12" name="obrigatorio12" class="form-control show-tick selectpicker">
-                                                    <option disabled selected value="">Escolha uma opção</option>
-                                                    <option value="sim">Sim</option>
-                                                    <option value="não">Não</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-6">
-                                        <p class="titulo subtitulo">Se Renovando</p>
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <p class="titulo">Mesmo orientador</p>
-                                                <select id="renovadoOrientador" name="renovadoOrientador" class="form-control show-tick selectpicker">
-                                                    <option selected value="">Escolha uma opção</option>
-                                                    <option value="sim">Sim</option>
-                                                    <option value="não">Não</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p class="titulo noSelect">Carga horária</p>
-                                        <div class="col-sm-6 noPaddingLeft">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="cargaCalculada" disabled>
-                                                    <label class="form-label">Calculada</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 noPaddingRight">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="cargaMinima" disabled>
-                                                    <label class="form-label">Mínima</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="number" class="form-control" name="diasUteis" required aria-required="true">
-                                                <label class="form-label">Dias Úteis</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="save-button col-lg-2">
-                                            <button type="submit" class="btn btn-block btn-lg btn-primary waves-effect">PRÓXIMO</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            <h2 class="card-inside-title aprovacao">Recebimento de contratos concluídos</h2>
+                            <div class="div-table">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable contratos">
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="body">
-                            <h2 class="card-inside-title">Alterar senha</h2>
-                            <form id="senha" method="POST">
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="senhaAtual" required aria-required="true">
-                                                <label class="form-label">Senha atual</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="novaSenha" required aria-required="true">
-                                                <label class="form-label">Nova Senha</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="confirmarSenha" required aria-required="true">
-                                                <label class="form-label">Confirmar Senha</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <div class="save-button col-lg-2">
-                                            <button type="submit" class="btn btn-block btn-lg btn-primary waves-effect">ALTERAR</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </section>
+    <div class="background-table"></div>
     <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -764,94 +646,83 @@
                     <h4 class="modal-title" id="defaultModalLabel">Atenção</h4>
                 </div>
                 <div class="modal-body">
-                    Você deseja ir para o início do cadastro?
+                    Você tem certeza que deseja excluir esta IMAGEM?
                 </div>
                 <div id="modalId"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
-                    <button type="button" class="btn waves-effect btn-danger confirmBack">OK</button>
+                    <button type="button" class="btn waves-effect btn-danger dataTableDelete">EXCLUIR</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="background-table"></div>
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover js-basic-example dataTable imagem">
-        </table>
-        <div class="table-search-buttons">
-            <div class="col-6 save-button col-lg-2">
-                <button id="table-cancel-button" type="submit" class="table-cancel-button btn btn-block btn-lg btn-danger waves-effect">CANCELAR</button>
-            </div>
-            <div class="col-6 save-button col-lg-2">
-                <button type="submit" class="table-confirm-button btn btn-block btn-lg btn-primary waves-effect">CONFIRMAR</button>
-            </div>
-        </div>
-    </div> -->
-
     <!-- Jquery Core Js -->
-    <script src="../../../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../../plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="../../../../plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="../../../plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Select Plugin Js -->
-    <script src="../../../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="../../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
     <!-- Slimscroll Plugin Js -->
-    <script src="../../../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="../../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Dropzone Plugin Js -->
+    <script src="../../../plugins/dropify/dropify.js"></script>
 
     <!-- Bootstrap Notify Plugin Js -->
-    <script src="../../../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+    <script src="../../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="../../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="../../../../plugins/node-waves/waves.js"></script>
+    <script src="../../../plugins/node-waves/waves.js"></script>
 
     <!-- Jquery DataTable Plugin Js -->
-    <script src="../../../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-    <script src="../../../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="../../../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-    <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-    <script src="../../../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-    <script src="../../../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-    <script src="../../../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-    <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-    <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    <script src="../../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="../../..//plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="../../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="../../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="../../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="../../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="../../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="../../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="../../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
     <!-- Jquery CountTo Plugin Js -->
-    <script src="../../../../plugins/jquery-countto/jquery.countTo.js"></script>
+    <script src="../../../plugins/jquery-countto/jquery.countTo.js"></script>
 
     <!-- Validation Plugin Js -->
-    <script src="../../../../plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="../../../plugins/jquery-validation/jquery.validate.js"></script>
 
     <!-- Morris Plugin Js -->
-    <script src="../../../../plugins/raphael/raphael.min.js"></script>
-    <script src="../../../../plugins/morrisjs/morris.js"></script>
+    <script src="../../../plugins/raphael/raphael.min.js"></script>
+    <script src="../../../plugins/morrisjs/morris.js"></script>
 
     <!-- ChartJs -->
-    <script src="../../../../plugins/chartjs/Chart.bundle.js"></script>
+    <script src="../../../plugins/chartjs/Chart.bundle.js"></script>
 
     <!-- Flot Charts Plugin Js -->
-    <script src="../../../../plugins/flot-charts/jquery.flot.js"></script>
-    <script src="../../../../plugins/flot-charts/jquery.flot.resize.js"></script>
-    <script src="../../../../plugins/flot-charts/jquery.flot.pie.js"></script>
-    <script src="../../../../plugins/flot-charts/jquery.flot.categories.js"></script>
-    <script src="../../../../plugins/flot-charts/jquery.flot.time.js"></script>
+    <script src="../../../plugins/flot-charts/jquery.flot.js"></script>
+    <script src="../../../plugins/flot-charts/jquery.flot.resize.js"></script>
+    <script src="../../../plugins/flot-charts/jquery.flot.pie.js"></script>
+    <script src="../../../plugins/flot-charts/jquery.flot.categories.js"></script>
+    <script src="../../../plugins/flot-charts/jquery.flot.time.js"></script>
 
     <!-- Sparkline Chart Plugin Js -->
-    <script src="../../../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="../../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
     <!-- Firebase Plugin Js -->
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
 
-    <!-- Datejs Plugin -->
-    <script src="../../../../plugins/datejs/date.js"></script>
-
     <!-- Custom Js -->
-    <script src="../../../../js/admin.js"></script>
-    <script src="../../../../js/pages/contratos/cadastrar/obrigatorio/obrigatorio.js"></script>
+    <script src="../../../js/admin.js"></script>
+    <script src="../../../js/pages/contratos/listar/listar.js"></script>
 
     <!-- Demo Js -->
-    <script src="../../../../js/demo.js"></script>
+    <script src="../../../js/demo.js"></script>
 </body>
 
 </html>

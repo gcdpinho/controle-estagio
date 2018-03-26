@@ -1245,13 +1245,14 @@ $('.confirmConfirm').click(function () {
     var resultado = getResultado();
     console.log(resultado);
     $('input[name="resultado"]').val(resultado.mensagem);
-    if (resultado.motivo == null)
+    if (resultado.motivo == null || resultado.motivo == undefined)
         $('textarea[name="motivos"]').parents('.row').css('display', 'none');
     else
         for (var element of resultado.motivo) {
             $('textarea[name="motivos"]').val($('textarea[name="motivos"]').val() + "\n" + element);
         }
-    $('textarea[name="motivos"]').attr('rows', resultado.motivo.length);
+    if (resultado.motivo != null && resultado.motivo != undefined)
+        $('textarea[name="motivos"]').attr('rows', resultado.motivo.length);
     if ($('input[name="lembrar"]').val() == null || $('input[name="lembrar"]').val() == "") {
         $('input[name="lembrar"]').parents('.row').css('display', 'none');
     }
@@ -1475,7 +1476,7 @@ var getResultado = function () {
         };
     else
         return {
-            mensagem: "Receber, em princípio. Na dúvida, pergunta!"
+            mensagem: "RECEBER"
         };
 }
 
@@ -1517,3 +1518,77 @@ $('.naoReceber').click(function () {
     localStorage.setItem('not', "Contrato não recebido com sucesso!");
     location.href = "../../../home/home.html"
 });
+
+var getTable = function () {
+    var recebido = JSON.parse(localStorage.getItem('recebido'));
+    var data = [
+        [recebido.conferencia.data, recebido.conferencia.conferente, recebido.aluno.nome,
+            recebido.resultado, recebido.recebimento.data, recebido.recebimento.recebedor, recebido.comentario
+        ]
+    ];
+    data.push([
+        "20/03/2015", "teste", "teste", "NÃO RECEBER", "", "Não Recebido", ""
+    ]);
+
+    data.push([
+        "25/03/2018", "teste", "teste", "RECEBER", "25/03/2018", "teste", ""
+    ]);
+
+
+
+    var colunas = [{
+            title: "Data conferência"
+        },
+        {
+            title: "Conferente"
+        },
+        {
+            title: "Nome"
+        },
+        {
+            title: "Resultado"
+        },
+        {
+            title: "Data Recebimento"
+        },
+        {
+            title: "Recebedor"
+        },
+        {
+            title: "Comentário"
+        }
+    ]
+    var table = $('.js-basic-example').DataTable({
+        data: data,
+        columns: colunas,
+        responsive: true,
+        bLengthChange: false,
+        bDestroy: true,
+        pageLength: 10,
+        language: {
+            zeroRecords: "Nenhum registro encontrado",
+            info: "Exibindo _START_ a _END_ de _TOTAL_ registros",
+            infoEmpty: "Exibindo 0 a 0 de 0 registros",
+            infoFiltered: "",
+            search: "",
+            searchPlaceholder: "Pesquisar",
+            paginate: {
+                "next": "Próximo",
+                "previous": "Anterior"
+            },
+        },
+    });
+
+    $('tr').each(function () {
+        var td = $(this).find('td');
+        if ($(td[3]).html() == "NÃO RECEBER" && $(td[4]).html() != "") {
+            $(this).css("background-color", '#d4000e');
+            $(this).css("color", 'white')
+        }
+
+        if ($(td[3]).html() == "RECEBER" && $(td[4]).html() == "") {
+            $(this).css("background-color", '#d4000e');
+            $(this).css("color", 'white')
+        }
+    });
+}

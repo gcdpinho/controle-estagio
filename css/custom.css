@@ -253,4 +253,5 @@ button.btn.dropdown-toggle.btn-default{
 
 textarea {
     resize: none;
+    min-height: 100px;
  }
