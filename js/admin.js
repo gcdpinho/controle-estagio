@@ -1310,31 +1310,37 @@ var getCargaMinima = function () {
 
 var getTermos = function () {
     var estagio = JSON.parse(localStorage.getItem('estagio'));
-    if (estagio.agente == "ABRH")
-        return 5;
-    else if (estagio.agente == "CIEE" || estagio.agente == "Eccos" || estagio.agente == "Fundatec" || estagio.agente == "InCompany" || estagio.agente == "Estagiar" || estagio.agente == "Agiel" || estagio.agente == "Banestágio" || estagio.agente == "UNIERGS" || estagio.agente == "Companhia de estágios" || estagio.agente == "Outro")
-        return 4;
-    else
-        return 3;
+    if (estagio != null) {
+        if (estagio.agente == "ABRH")
+            return 5;
+        else if (estagio.agente == "CIEE" || estagio.agente == "Eccos" || estagio.agente == "Fundatec" || estagio.agente == "InCompany" || estagio.agente == "Estagiar" || estagio.agente == "Agiel" || estagio.agente == "Banestágio" || estagio.agente == "UNIERGS" || estagio.agente == "Companhia de estágios" || estagio.agente == "Outro")
+            return 4;
+        else
+            return 3;
+    }
 }
 
 var getPAS = function (tipo) {
     var estagio = JSON.parse(localStorage.getItem('estagio'));
-    if (estagio.concedente == "CEEE-D" || estagio.concedente == "CEEE-GT" || estagio.concedente == "EMBRAPA" || estagio.concedente == "CRM")
-        return 2;
-    else if (estagio.agente == "não" && tipo == "TCE")
-        return 4;
-    else
-        return 2;
+    if (estagio != null) {
+        if (estagio.concedente == "CEEE-D" || estagio.concedente == "CEEE-GT" || estagio.concedente == "EMBRAPA" || estagio.concedente == "CRM")
+            return 2;
+        else if (estagio.agente == "não" && tipo == "TCE")
+            return 4;
+        else
+            return 2;
+    }
 }
 
 var getLembrarDe = function () {
     var estagio = JSON.parse(localStorage.getItem('estagio'));
     var seguro = JSON.parse(localStorage.getItem('seguro'));
-    if (estagio.agente == "ABRH" || estagio.agente == "CIEE" || estagio.agente == "Eccos" || estagio.agente == "Fundatec" || estagio.agente == "InCompany" || estagio.agente == "Estagiar" || estagio.agente == "Agiel" || estagio.agente == "Banestágio" || estagio.agente == "UNIERGS" || estagio.agente == "Companhia deAX1 estágios" || estagio.agente == "Outro")
-        return "Verificar se nome do Orientador no termo está correto";
-    else if (seguro.cargo == "Inst. Ensino")
-        return "Receber se data de início e exame médico ok. PEDIR SEGURO!";
+    if (estagio != null && seguro != null) {
+        if (estagio.agente == "ABRH" || estagio.agente == "CIEE" || estagio.agente == "Eccos" || estagio.agente == "Fundatec" || estagio.agente == "InCompany" || estagio.agente == "Estagiar" || estagio.agente == "Agiel" || estagio.agente == "Banestágio" || estagio.agente == "UNIERGS" || estagio.agente == "Companhia deAX1 estágios" || estagio.agente == "Outro")
+            return "Verificar se nome do Orientador no termo está correto";
+        else if (seguro.cargo == "Inst. Ensino")
+            return "Receber se data de início e exame médico ok. PEDIR SEGURO!";
+    }
 }
 
 var getResultado = function () {
@@ -1472,3 +1478,42 @@ var getResultado = function () {
             mensagem: "Receber, em princípio. Na dúvida, pergunta!"
         };
 }
+
+var receber = function (value) {
+    var username = localStorage.getItem('username');
+    var registro = {
+        conferencia: {
+            data: new Date().toLocaleDateString(),
+            conferente: localStorage.getItem('username')
+        },
+        aluno: {
+            nome: JSON.parse(localStorage.getItem('aluno')).nome
+        },
+        matricula: {
+            numero: JSON.parse(localStorage.getItem('matricula')).numero
+        },
+        resultado: $('input[name="resultado"]').val(),
+        recebimento: {
+            data: value == 0 ? new Date().toLocaleDateString() : "",
+            recebedor: value == 0 ? localStorage.getItem('username') : "Não recebido"
+        },
+        comentario: $('textarea[name="comentario"]').val()
+    };
+
+    localStorage.clear();
+    localStorage.setItem('recebido', JSON.stringify(registro));
+    localStorage.setItem('username', username);
+}
+
+$('.receber').click(function () {
+    receber(0);
+    localStorage.setItem('not', "Contrato recebido com sucesso!");
+    location.href = "../../../home/home.html"
+
+});
+
+$('.naoReceber').click(function () {
+    receber(1);
+    localStorage.setItem('not', "Contrato não recebido com sucesso!");
+    location.href = "../../../home/home.html"
+});

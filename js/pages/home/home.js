@@ -1,6 +1,15 @@
 ﻿$(function () {
 
     getUsuario();
+
+    //Notification em caso de page reload
+    var not = localStorage.getItem('not');
+    if (not != null && not != "") {
+        showNotification(not, 'success');
+        localStorage.setItem('not', "");
+    }
+
+
     $('.page-loader-wrapper').fadeOut();
 
 

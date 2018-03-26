@@ -80,8 +80,10 @@ $(function () {
                     renovadoOrientador: $('.selectpicker#renovadoOrientador').val()
                 },
                 diasUteis: $('input[name="diasUteis"]').val(),
-                cargaCalculada: $('input[name="cargaCalculada"]').val(),
-                cargaMinima: $('input[name="cargaMinima"]').val()
+                cargaHorario: {
+                    cargaCalculada: $('input[name="cargaCalculada"]').val(),
+                    cargaMinima: $('input[name="cargaMinima"]').val()
+                }
             }));
             location.href = "../seguro/seguro.html";
             e.preventDefault();
