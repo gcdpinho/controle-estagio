@@ -25,10 +25,20 @@ $(function () {
         placeholder: 'R$ __.___,__'
     });
 
+    $('.selectpicker#cargo').on('changed.bs.select', function (e) {
+        console.log($(this).val())
+        if ($(this).val() != "Agente Integr.")
+            $('.seguro-display').css('display', 'block');
+        else
+            $('.seguro-display').css('display', 'none');
+    });
+
 
     var seguro = JSON.parse(localStorage.getItem('seguro'));
     if (seguro != null) {
         $('.selectpicker#cargo').selectpicker('val', seguro.cargo);
+        if (seguro.cargo != "Agente Integr.")
+            $('.seguro-display').css('display', 'block');
         $('input[name="vigenciaDataInicial"]').val(seguro.vigencia.vigenciaDataInicial);
         $('input[name="vigenciaDataInicial"]').parents('.form-line').addClass('focused');
         $('input[name="vigenciaDataFinal"]').val(seguro.vigencia.vigenciaDataFinal);
