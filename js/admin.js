@@ -1465,6 +1465,13 @@ var getResultado = function () {
     if (estagio.area == "não" && curso.modalidade == "Pós")
         motivo.push("Estágio não é na área e modalidade do curso é Pós");
 
+    moment.locale('pt-br');
+    var data1 = moment(Date.parse(periodo.dataInicial), 'DD/MM/YYYY');
+    var data2 = moment(new Date(), 'DD/MM/YYYY');
+    var diff = data2.diff(data1, 'days');
+    if (Math.abs(diff) > 15)
+        motivo.push("Data de conferência do contrato maior que 15 dias do inicio do estágio");
+
     if (motivo.length > 0)
         return {
             mensagem: "NÃO RECEBER",

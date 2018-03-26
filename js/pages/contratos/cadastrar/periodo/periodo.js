@@ -21,6 +21,7 @@ $(function () {
         $(this).valid();
     });
 
+
     var periodo = JSON.parse(localStorage.getItem('periodo'));
     if (periodo != null) {
         $('input[name="dataInicial"]').val(periodo.dataInicial);
