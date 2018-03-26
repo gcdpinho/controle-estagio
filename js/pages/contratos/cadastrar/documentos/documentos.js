@@ -3,18 +3,25 @@ $(function () {
     getUsuario();
     requiredSelect();
 
-    
+    $('input[name="termos"]').val(getTermos());
+    $('input[name="termos"]').parents('.form-line').addClass('focused');
+
+    $('.selectpicker#tipo').on('changed.bs.select', function (e) {
+        $('input[name="pas"]').val(getPAS($('.selectpicker#tipo').val()));
+        $('input[name="pas"]').parents('.form-line').addClass('focused');
+    });
+
 
     var documentos = JSON.parse(localStorage.getItem('documentos'));
     if (documentos != null) {
         $('.selectpicker#tipo').selectpicker('val', documentos.tipo);
         $('.selectpicker#constaNumero').selectpicker('val', documentos.constaNumero);
-        $('input[name="termos"]').val(documentos.numVias.termos);
-        $('input[name="termos"]').focus();
-        $('input[name="pas"]').val(documentos.numVias.pas);
-        $('input[name="pas"]').focus();
         $('.selectpicker#assinados').selectpicker('val', documentos.assinados);
         $('.selectpicker#dadosCertos').selectpicker('val', documentos.dadosCertos);
+        if (documentos.numVias.pas != null){
+            $('input[name="pas"]').val(documentos.numVias.pas);
+            $('input[name="pas"]').parents('.form-line').addClass('focused');
+        }
 
     }
 
@@ -80,6 +87,9 @@ $(function () {
                 assinados: $('.selectpicker#assinados').val(),
                 dadosCertos: $('.selectpicker#dadosCertos').val()
             }));
+
+            $('#confirmModal').modal('show');
+            /*
             $('.table-responsive').css('top', 'calc(50% - ' + $('.table-responsive').height() / 2 + 'px)');
             if ($(window).width() > 1024)
                 $('.table-responsive').css('left', 'calc(50% - ' + ($('.table-responsive').width() / 2 - $('#leftsidebar').width() / 2) + 'px)');
@@ -87,6 +97,7 @@ $(function () {
                 $('.table-responsive').css('left', $(window).width() <= 768 ? 0 : $(window).width() / 2 - $('.table-responsive').width() / 2);
             $('.table-responsive').css('display', 'block');
             $('.background-table').css('display', 'block');
+            */
             e.preventDefault();
         }
     });

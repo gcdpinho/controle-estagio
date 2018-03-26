@@ -29,4 +29,125 @@ else if (curso.sigla == "EDI" && curso.modalidade == "Concomitante"){
         return 160;
     else
         return 300;
+
+
+SE(OU(M4="CIEE";M4="Eccos";M4="Fundatec";M4="InCompany";M4="Estagiar";M4="Agiel";M4="Banestágio";M4="UNIERGS";M4="Companhia de estágios";M4="Outro");4;3))
     
+if (estagio.agente == "ABRH")
+    return 5;
+else if (estagio.agente == "CIEE" || estagio.agente == "Eccos" || estagio.agente == "Fundatec" || estagio.agente == "InCompany" || estagio.agente == "Estagiar" || estagio.agente == "Agiel" || estagio.agente == "Banestágio" || estagio.agente == "UNIERGS" || estagio.agente == "Companhia de estágios" || estagio.agente == "Outro")
+    return 4;
+else
+    return 3;
+
+=SE(OU(N4="CEEE-D";N4="CEEE-GT";N4="EMBRAPA";N4="CRM");2;SE(E(M4="Não";AO4="TCE");4;2))
+
+if (estagio.concedente == "CEEE-D" || estagio.concedente == "CEEE-GT" || estagio.concedente == "EMBRAPA" || estagio.concedente == "CRM")
+    return 2;
+else if (estagio.agente == "não" && documentos.tipo == "TCE")
+    return 4;
+else
+    return 2;
+
+SE(N4="IFSul";"Lembrar de não carimbar 'SIAPE' ou 'Estágio não obrigatório'";"")))
+
+if (estagio.agente == "ABRH" || estagio.agente == "CIEE" || estagio.agente == "Eccos" || estagio.agente == "Fundatec" || estagio.agente == "InCompany" || estagio.agente == "Estagiar" || estagio.agente == "Agiel" || estagio.agente == "Banestágio" || estagio.agente == "UNIERGS" || estagio.agente == "Companhia deAX1 estágios" || estagio.agente == "Outro")
+    return "Verificar se nome do Orientador no termo está correto";
+else if (seguro.cargo == "Inst. Ensino")
+    return "Receber se data de início e exame médico ok. PEDIR SEGURO!";
+
+=SE(OU(
+    L5="Sim";S5<=R5;AU5="Não";
+    AS5="Não";AT5="Não";AR5="Não";V5="Sim";
+    E(P5="Não-obrigatório";AH5="Inst. Ensino"); 
+    E(I5="Não";OU(T5>6;U5>30));
+    OU(E(I5="Sim";OU(T5>8;U5>40)));E(P5="Não-obrigatório";
+    OU(AC5="Não";AD5="Não";
+    AE5<S5;AF5="Sim";AG5="Sim"));
+    E(P5="Obrigatório";OU(J5="DES";J5="TSI";
+    J5="TSIAD";J5="DINT";
+    E(J5="CVI";K5="Integrado")));
+    E(P5="Obrigatório";Y5="Não");
+    E(P5="Obrigatório";OU(W5="Sim";X5="Sim";
+    E(AO5="TCE";AA5<AB5)));
+    E(AH5="Concedente";AO5="TCE";
+    OU(AI5>R5;AJ5<S5;
+    AK5<15000;AL5="Não";AM5="Não";
+    AN5="Não"));E(AH5="Concedente";AO5="TA";
+    OU(AI5>R5;AJ5<S5;AK5<15000;AL5="Não";AM5="Não"));
+    E(P5="Obrigatório";K5="Integrado";G5<7;I5="Não");
+    E(P5="Obrigatório";K5="Integrado";G5=7;H5="Sim";I5="Não");
+    E(J5="MEC";P5="Obrigatório";
+    OU(K5="Concomitante";K5="Subsequente");OU(G5<2;
+    E(G5=2;H5="Sim"));I5="Não");
+    E(J5="EDI";P5="Obrigatório";K5="Subsequente";
+    OU(G5<4;E(G5=4;H5="Sim"));I5="Não");
+    E(OU(J5="TRO";J5="EME";J5="QUI";
+    J5="TEL";J5="CVI");P5="Obrigatório";
+    OU(K5="Subsequente";K5="Concomitante");
+    OU(G5<3;E(G5=3;H5="Sim"));I5="Não");E(Q5="Não";K5="Integrado";P5="Obrigatório");E(Q5="Não";K5="Subsequente");E(Q5="Não";K5="Concomitante");E(Q5="Não";K5="Superior");E(Q5="Não";K5="Pós"));"NÃO RECEBER";SE(D5="Menor";"Receber apenas c/ assinatura do responsável e se horário não ultrapassar as 22h, em princípio";SE(AU5="Sim, conferi tudo";"Receber, em princípio. Na dúvida, pergunta!";"NÃO RECEBER")))
+
+if (estagio.outro == "sim" || periodo.dataFinal <= periodo.dataInicial || documentos.dadosCertos == "não" 
+|| documentos.constaNumero == "não" || periodo.doisAnos == "sim" || 
+(estagio.modalidade = "Não-Obrigatório" && seguro.cargo == "Inst. Ensino") || 
+(matricula.formado == "não" && (periodo.cargaHorario.cargaDiaria > 6 || periodo.cargaHorario.cargaSemanal > 30) 
+|| (matricula.formado == "sim" && (periodo.cargaHorario.cargaDiaria > 8 ||
+ periodo.cargaHorario.cargaSemanal > 40)) || (estagio.modalidade = "Não-Obrigatório" && 
+ (naoObrigatorio.auxTransp == "não" || naoObrigatorio.horarioDist == "não" || 
+ naoObrigatorio.formatura < periodo.dataFinal || naoObrigatorio.renovando.repFalta == "sim" || 
+ naoObrigatorio.renovando.rep50 == "sim")) || (estagio.modalidade = "Obrigatório" && (curso.sigla == "DES" ||
+  curso.sigla == "TSI" || curso.sigla == "TSIAD" || curso.sigla == "DINT" || (curso.sigla == "CVI" && curso.modalidade == "Integrado"
+  ))) ||  (estagio.modalidade = "Obrigatório" && obrigatorio.renovando.renovadoOrientador = "não") || 
+  (estagio.modalidade = "Obrigatório" && (obrigatorio.relatorioFinal == "sim" || obrigatorio.obrigatorio12 == "sim" 
+  || (documentos.tipo == "TCE" && obrigatorio.cargaHorario.cargaCalculada < obrigatorio.cargaHorario.cargaMinima)))
+  || (seguro.cargo == "Concedente" && documentos.tipo == "TCE" && 
+  (seguro.vigencia.vigenciaDataInicial > periodo.dataInicial || seguro.vigencia.vigenciaDataFinal < periodo.dataFinal
+  || seguro.capitalSegurado < 15000 || seguro.coberturas.mac == "não" || seguro.coberturas.ipa == "não" ||
+  seguro.entregouApoliceProposta == "não")) || (seguro.cargo == "Concedente" && documentos.tipo == "TA" &&
+  (seguro.vigencia.vigenciaDataInicial > periodo.dataInicial || seguro.vigencia.vigenciaDataFinal < periodo.dataFinal
+  || seguro.capitalSegurado < 15000 || seguro.coberturas.mac == "não" || seguro.coberturas.ipa == "não" ||
+  seguro.entregouApoliceProposta == "não")) || (estagio.modalidade == "Obrigatório" && 
+  curso.modalidade == "Integrado" && matricula.semestre < 7 && matricula.formado == "não") || 
+  (estagio.modalidade == "Obrigatório" && curso.modalidade == "Integrado" && matricula.semestre == 7 
+  && matricula.dependencia == "sim" && matricula.formado == "não") || (curso.sigla == "MEC" && estagio.modalidade == "Obrigatório" 
+  &&(curso.modalidade == "Concomitante" || curso.modalidade == "Subsequente") && (matricula.semestre < 2 || 
+  (matricula.semestre == 2 && matricula.dependencia == "sim)) && matricula.formado == "não") || 
+  (curso.sigla == "EDI" && estagio.modalidade == "Obrigatório" && curso.modalidade == "Subsequente" && 
+  (matricula.semestre < 4 || (matricula.semestre == 4 && matricula.dependencia == "sim")) && 
+  matricula.formado == "não") || ((curso.sigla == "TRO" || curso.sigla == "EME" || curso.sigla == "QUI" ||
+  curso.sigla == "TEL" || curso.sigla == "CVI") && estagio.modalidade == "Obrigatório" && 
+  (curso.modalidade == "Subsequente" || curso.modalidade == "Concomitante") || 
+  (matricula.semestre < 3 || (matricula.semestre == 3 && matricula.dependencia == "sim")) || 
+  matricula.formado == "não") || (estagio.area == "não" && curso.modalidade == "Integrado" && 
+  estagio.modalidade == "Obrigatório") || (Q5="Não" && K5="Subsequente") || (Q5="Não" && K5="Concomitante") || 
+  (Q5="Não" && K5="Superior") || (Q5="Não" && K5="Pós")) "NÃO RECEBER";SE(D5="Menor";"Receber apenas c/ assinatura do responsável e se horário não ultrapassar as 22h, em princípio";SE(AU5="Sim, conferi tudo";"Receber, em princípio. Na dúvida, pergunta!";"NÃO RECEBER")))
+
+  OU(G5<3;E(G5=3;H5="Sim"));I5="Não");
+  E(Q5="Não";K5="Integrado";P5="Obrigatório");E(Q5="Não";K5="Subsequente");E(Q5="Não";K5="Concomitante");E(Q5="Não";K5="Superior");E(Q5="Não";K5="Pós"));"NÃO RECEBER";SE(D5="Menor";"Receber apenas c/ assinatura do responsável e se horário não ultrapassar as 22h, em princípio";SE(AU5="Sim, conferi tudo";"Receber, em princípio. Na dúvida, pergunta!";"NÃO RECEBER")))
+
+
+
+
+
+
+  if ((L5="Sim" || S5<=R5 || AU5="Não" || AS5="Não" || AT5="Não" || AR5="Não" || V5="Sim" ||
+  (P5="Não-obrigatório" && AH5="Inst. Ensino") || (I5="Não" && (T5>6 || U5>30)) || 
+  ((I5="Sim" && (T5>8 || U5>40))) || (P5="Não-obrigatório" && 
+  (AC5="Não" || AD5="Não" || AE5<S5 || AF5="Sim" || AG5="Sim")) || 
+  (P5="Obrigatório" && (J5="DES || J5="TSI" || J5="TSIAD" || J5="DINT" || (J5="CVI" && K5="Integrado")))
+  || (P5="Obrigatório" && Y5="Não") || (P5="Obrigatório" && (W5="Sim" || X5="Sim" || 
+  (AO5="TCE" && AA5<AB5))) || (AH5="Concedente" && AO5="TCE" && (AI5>R5 || AJ5<S5 || AK5<15000 || 
+  AL5="Não" || AM5="Não" || AN5="Não")) || (AH5="Concedente" && AO5="TA" && 
+  (AI5>R5 || AJ5<S5 || AK5<15000 || AL5="Não" || AM5="Não")) || (P5="Obrigatório" && K5="Integrado"
+  && G5<7 && I5="Não") || (P5="Obrigatório" && K5="Integrado" && G5=7 && H5="Sim" && I5="Não") 
+  || (J5="MEC" && P5="Obrigatório" && (K5="Concomitante" || K5="Subsequente") && (G5<2 || (G5=2 && H5="Sim"))
+   && I5="Não") || (J5="EDI" && P5="Obrigatório" && K5="Subsequente" && (G5<4 || (G5=4 && H5="Sim")) && 
+   I5="Não") || ((J5="TRO" || J5="EME" || J5="QUI" || J5="TEL" || J5="CVI") && P5="Obrigatório" && 
+   (K5="Subsequente" || K5="Concomitante") || (G5<3 || (G5=3 && H5="Sim")) || I5="Não") || 
+   (Q5="Não" && K5="Integrado" && P5="Obrigatório") || (Q5="Não" && K5="Subsequente") || 
+   (Q5="Não" && K5="Concomitante") || (Q5="Não" && K5="Superior") || (Q5="Não" && K5="Pós"))
+   return "NÃO RECEBER";
+   else if (D5="Menor")
+    return "Receber apenas c/ assinatura do responsável e se horário não ultrapassar as 22h, em princípio";
+    else 
+        return "NÃO RECEBER"

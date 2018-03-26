@@ -250,3 +250,7 @@ button.btn.dropdown-toggle.btn-default{
 .card.resultado{
     box-shadow: none;
 }
+
+textarea {
+    resize: none;
+ }
