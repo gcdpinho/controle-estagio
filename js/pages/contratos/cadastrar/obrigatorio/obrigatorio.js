@@ -2,6 +2,7 @@ $(function () {
 
     getUsuario();
     requiredSelect();
+    localStorage.setItem('naoObrigatorio', null);
 
     $('.selectpicker').on('changed.bs.select', function (e) {
         if (!$(this).parents('.form-line').hasClass('focused')) {
@@ -18,7 +19,7 @@ $(function () {
 
     $('input[name="diasUteis"]').on('input', function () {
         if ($(this).val() != "") {
-            $('input[name="cargaCalculada"]').val($(this).val() * periodo.cargaHorario.cargaDiaria)
+            $('input[name="cargaCalculada"]').val($(this).val() * periodo.cargaDiaria)
             $('input[name="cargaCalculada"]').parents('.form-line').addClass('focused');
         }
     });
@@ -28,11 +29,11 @@ $(function () {
     if (obrigatorio != null) {
         $('.selectpicker#relatorioFinal').selectpicker('val', obrigatorio.relatorioFinal);
         $('.selectpicker#obrigatorio12').selectpicker('val', obrigatorio.obrigatorio12);
-        $('.selectpicker#renovadoOrientador').selectpicker('val', obrigatorio.renovando.renovadoOrientador);
+        $('.selectpicker#renovadoOrientador').selectpicker('val', obrigatorio.renovadoOrientador);
         $('input[name="diasUteis"]').val(obrigatorio.diasUteis);
         $('input[name="diasUteis"]').focus();
         if (obrigatorio.diasUteis != null) {
-            $('input[name="cargaCalculada"]').val(obrigatorio.diasUteis * periodo.cargaHorario.cargaDiaria)
+            $('input[name="cargaCalculada"]').val(obrigatorio.diasUteis * periodo.cargaDiaria)
             $('input[name="cargaCalculada"]').parents('.form-line').addClass('focused');
         }
     }
@@ -76,14 +77,12 @@ $(function () {
             localStorage.setItem('obrigatorio', JSON.stringify({
                 relatorioFinal: $('.selectpicker#relatorioFinal').val(),
                 obrigatorio12: $('.selectpicker#obrigatorio12').val(),
-                renovando: {
-                    renovadoOrientador: $('.selectpicker#renovadoOrientador').val()
-                },
+                // renovando: {
+                //     renovadoOrientador: $('.selectpicker#renovadoOrientador').val()
+                // },
                 diasUteis: $('input[name="diasUteis"]').val(),
-                cargaHorario: {
-                    cargaCalculada: $('input[name="cargaCalculada"]').val(),
-                    cargaMinima: $('input[name="cargaMinima"]').val()
-                }
+                cargaCalculada: $('input[name="cargaCalculada"]').val(),
+                cargaMinima: $('input[name="cargaMinima"]').val()
             }));
             location.href = "../seguro/seguro.html";
             e.preventDefault();

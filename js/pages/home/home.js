@@ -11,6 +11,11 @@
 
 
     $('.page-loader-wrapper').fadeOut();
+    //new Chart(document.getElementById("line_chart").getContext("2d"), getChartJs('line'));
+    new Chart(document.getElementById("bar_chart").getContext("2d"), getChartJs('bar'));
+    new Chart(document.getElementById("pie_chart_other").getContext("2d"), getChartJs('pie_other'));
+    new Chart(document.getElementById("pie_chart").getContext("2d"), getChartJs('pie'));
+
 
 
     //Get info usuario
@@ -50,126 +55,220 @@
     //     localStorage.setItem('not', "");
     // }
 
-    //Widgets count
-    $('.count-to').countTo();
+    // //Widgets count
+    // $('.count-to').countTo();
 
-    //Sales count to
-    $('.sales-count-to').countTo({
-        formatter: function (value, options) {
-            return '$' + value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, ' ').replace('.', ',');
-        }
-    });
+    // //Sales count to
+    // $('.sales-count-to').countTo({
+    //     formatter: function (value, options) {
+    //         return '$' + value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, ' ').replace('.', ',');
+    //     }
+    // });
 
-    initRealTimeChart();
-    initDonutChart();
-    initSparkline();
+    // initRealTimeChart();
+    // initDonutChart();
+    // initSparkline();
 });
 
-var realtime = 'on';
 
-function initRealTimeChart() {
-    //Real time ==========================================================================================
-    var plot = $.plot('#real_time_chart', [getRandomData()], {
-        series: {
-            shadowSize: 0,
-            color: 'rgb(0, 188, 212)'
-        },
-        grid: {
-            borderColor: '#f3f3f3',
-            borderWidth: 1,
-            tickColor: '#f3f3f3'
-        },
-        lines: {
-            fill: true
-        },
-        yaxis: {
-            min: 0,
-            max: 100
-        },
-        xaxis: {
-            min: 0,
-            max: 100
-        }
-    });
+function getChartJs(type) {
+    var config = null;
 
-    function updateRealTime() {
-        plot.setData([getRandomData()]);
-        plot.draw();
-
-        var timeout;
-        if (realtime === 'on') {
-            timeout = setTimeout(updateRealTime, 320);
-        } else {
-            clearTimeout(timeout);
-        }
-    }
-
-    updateRealTime();
-
-    $('#realtime').on('change', function () {
-        realtime = this.checked ? 'on' : 'off';
-        updateRealTime();
-    });
-    //====================================================================================================
-}
-
-function initSparkline() {
-    $(".sparkline").each(function () {
-        var $this = $(this);
-        $this.sparkline('html', $this.data());
-    });
-}
-
-function initDonutChart() {
-    Morris.Donut({
-        element: 'donut_chart',
-        data: [{
-                label: 'Chrome',
-                value: 37
-            }, {
-                label: 'Firefox',
-                value: 30
-            }, {
-                label: 'Safari',
-                value: 18
-            }, {
-                label: 'Opera',
-                value: 12
+    if (type === 'line') {
+        config = {
+            type: 'line',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: "Contratos sem erro",
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    borderColor: 'rgba(0, 188, 212, 0.75)',
+                    backgroundColor: 'rgba(0, 188, 212, 0.3)',
+                    pointBorderColor: 'rgba(0, 188, 212, 0)',
+                    pointBackgroundColor: 'rgba(0, 188, 212, 0.9)',
+                    pointBorderWidth: 1
+                }, {
+                    label: "Contratos com erro",
+                    data: [0,
+                        1,
+                        1,
+                        1,
+                        0,
+                        1,
+                        1,
+                        3
+                        ],
+                    borderColor: 'rgba(233, 30, 99, 0.75)',
+                    backgroundColor: 'rgba(233, 30, 99, 0.3)',
+                    pointBorderColor: 'rgba(233, 30, 99, 0)',
+                    pointBackgroundColor: 'rgba(233, 30, 99, 0.9)',
+                    pointBorderWidth: 1
+                }]
             },
-            {
-                label: 'Other',
-                value: 3
+            options: {
+                responsive: true,
+                legend: false
             }
-        ],
-        colors: ['rgb(233, 30, 99)', 'rgb(0, 188, 212)', 'rgb(255, 152, 0)', 'rgb(0, 150, 136)', 'rgb(96, 125, 139)'],
-        formatter: function (y) {
-            return y + '%'
         }
-    });
-}
-
-var data = [],
-    totalPoints = 110;
-
-function getRandomData() {
-    if (data.length > 0) data = data.slice(1);
-
-    while (data.length < totalPoints) {
-        var prev = data.length > 0 ? data[data.length - 1] : 50,
-            y = prev + Math.random() * 10 - 5;
-        if (y < 0) {
-            y = 0;
-        } else if (y > 100) {
-            y = 100;
+    } else if (type === 'bar') {
+        config = {
+            type: 'bar',
+            data: {
+                labels: ["Natalia", "Laura", "Lucas", "Thamiris", "Mariana", "Gabriel", "Tamires", "Outros"],
+                datasets: [{
+                    label: "Eficiência",
+                    data: [100,
+                        94,
+                        94,
+                        97,
+                        100,
+                        83,
+                        67,
+                        94
+                        ],
+                    backgroundColor: 'rgba(0, 188, 212, 0.8)'
+                }]
+            },
+            options: {
+                responsive: true,
+                legend: false
+            }
         }
+    } else if (type === 'radar') {
+        config = {
+            type: 'radar',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: "My First dataset",
+                    data: [65, 25, 90, 81, 56, 55, 40],
+                    borderColor: 'rgba(0, 188, 212, 0.8)',
+                    backgroundColor: ['rgba(0, 188, 212, 0.5)', 'rgba(233, 30, 99, 0.5)'],
+                    pointBorderColor: 'rgba(0, 188, 212, 0)',
+                    pointBackgroundColor: 'rgba(0, 188, 212, 0.8)',
+                    pointBorderWidth: 1
+                }, {
+                    label: "My Second dataset",
+                    data: [72, 48, 40, 19, 96, 27, 100],
+                    borderColor: 'rgba(233, 30, 99, 0.8)',
+                    backgroundColor: 'rgba(233, 30, 99, 0.5)',
+                    pointBorderColor: 'rgba(233, 30, 99, 0)',
+                    pointBackgroundColor: 'rgba(233, 30, 99, 0.8)',
+                    pointBorderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                legend: false
+            }
+        }
+    } else if (type === 'pie') {
+        config = {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: [15,
+                        18,
+                        16,
+                        36,
+                        18,
+                        6,
+                        3,
+                        54
+                    ],
+                    backgroundColor: [
+                        "rgb(233, 30, 99)",
+                        "rgb(255, 193, 7)",
+                        "rgb(0, 188, 212)",
+                        "rgb(139, 195, 74)",
+                        'rgba(247, 83, 76, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                }],
+                labels: [
+                    "Natalia",
+                    "Laura",
+                    "Lucas",
+                    "Thamiris",
+                    "Mariana",
+                    "Gabriel",
+                    "Tamires",
+                    "Outros"
 
-        data.push(y);
+                ]
+            },
+            options: {
+                responsive: true,
+                legend: false
+            }
+        }
+    } else if (type === 'pie_other') {
+        config = {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: [130,
+                        2,
+                        2,
+                        5,
+                        4,
+                        1,
+                        2,
+                        3,
+                        2,
+                        5,
+                        1,
+                        1,
+                        3,
+                        2,
+                        2
+                        
+                    ],
+                    backgroundColor: [
+                        "rgb(233, 30, 99)",
+                        "rgb(255, 193, 7)",
+                        "rgb(0, 188, 212)",
+                        "rgb(139, 195, 74)",
+                        'rgba(247, 83, 76, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(181, 159, 91, 1)',
+                        'rgba(199, 15, 230, 1)',
+                        'rgba(56, 134, 59, 1)',
+                        'rgba(121, 85, 72, 1)',
+                        'rgba(160, 160, 160, 1)',
+                        'rgba(177, 91, 64, 1)',
+                        'rgba(234, 234, 234, 1)'
+                    ],
+                }],
+                labels: [
+                    "Pelotas",
+                    "São Lourenço do Sul",
+                    "Capão do Leão",
+                    "Rio Grande",
+                    "Turuçu",
+                    "Pinheiro Machado",
+                    "Arroio Grande",
+                    "Santana da Boa Vista",
+                    "Porto Alegre", 
+                    "Canguçu", 
+                    "Ijuí", 
+                    "Piratini", 
+                    "Horizontina", 
+                    "Morro Redondo", 
+                    "Cerrito"
+                ]
+            },
+            options: {
+                responsive: true,
+                legend: false
+            }
+        }
     }
 
-    var res = [];
-    for (var i = 0; i < data.length; ++i) {
-        res.push([i, data[i]]);
-    }
 
-    return res;
+    return config;
 }

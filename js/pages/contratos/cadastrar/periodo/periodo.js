@@ -28,9 +28,9 @@ $(function () {
         $('input[name="dataInicial"]').parents('.form-line').addClass('focused');
         $('input[name="dataFinal"]').val(periodo.dataFinal);
         $('input[name="dataFinal"]').parents('.form-line').addClass('focused');
-        $('input[name="cargaDiaria"]').val(periodo.cargaHorario.cargaDiaria);
+        $('input[name="cargaDiaria"]').val(periodo.cargaDiaria);
         $('input[name="cargaDiaria"]').focus();
-        $('input[name="cargaSemanal"]').val(periodo.cargaHorario.cargaSemanal);
+        $('input[name="cargaSemanal"]').val(periodo.cargaSemanal);
         $('input[name="cargaSemanal"]').focus();
         $('.selectpicker#doisAnos').selectpicker('val', periodo.doisAnos);
     }
@@ -83,10 +83,8 @@ $(function () {
             localStorage.setItem('periodo', JSON.stringify({
                 dataInicial: $('input[name="dataInicial"]').val(),
                 dataFinal: $('input[name="dataFinal"]').val(),
-                cargaHorario: {
-                    cargaDiaria: $('input[name="cargaDiaria"]').val(),
-                    cargaSemanal: $('input[name="cargaSemanal"]').val()
-                },
+                cargaDiaria: $('input[name="cargaDiaria"]').val(),
+                cargaSemanal: $('input[name="cargaSemanal"]').val(),
                 doisAnos: $('.selectpicker#doisAnos').val()
             }));
             if (JSON.parse(localStorage.getItem('estagio')).modalidade == "Obrigatório")

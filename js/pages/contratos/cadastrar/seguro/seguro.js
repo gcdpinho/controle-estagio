@@ -39,14 +39,14 @@ $(function () {
         $('.selectpicker#cargo').selectpicker('val', seguro.cargo);
         if (seguro.cargo != "Agente Integr.")
             $('.seguro-display').css('display', 'block');
-        $('input[name="vigenciaDataInicial"]').val(seguro.vigencia.vigenciaDataInicial);
+        $('input[name="vigenciaDataInicial"]').val(seguro.vigenciaDataInicial);
         $('input[name="vigenciaDataInicial"]').parents('.form-line').addClass('focused');
-        $('input[name="vigenciaDataFinal"]').val(seguro.vigencia.vigenciaDataFinal);
+        $('input[name="vigenciaDataFinal"]').val(seguro.vigenciaDataFinal);
         $('input[name="vigenciaDataFinal"]').parents('.form-line').addClass('focused');
         $('input[name="capitalSegurado"]').val(seguro.capitalSegurado);
         $('input[name="capitalSegurado"]').parents('.form-line').addClass('focused');
-        $('.selectpicker#mac').selectpicker('val', seguro.coberturas.mac);
-        $('.selectpicker#ipa').selectpicker('val', seguro.coberturas.ipa);
+        $('.selectpicker#mac').selectpicker('val', seguro.mac);
+        $('.selectpicker#ipa').selectpicker('val', seguro.ipa);
         $('.selectpicker#entregouApoliceProposta').selectpicker('val', seguro.entregouApoliceProposta);
     }
 
@@ -106,15 +106,11 @@ $(function () {
         if ($("#seguro").valid()) {
             localStorage.setItem('seguro', JSON.stringify({
                 cargo: $('.selectpicker#cargo').val(),
-                vigencia: {
-                    vigenciaDataInicial: $('input[name="vigenciaDataInicial"]').val(),
-                    vigenciaDataFinal: $('input[name="vigenciaDataFinal"]').val()
-                },
+                vigenciaDataInicial: $('input[name="vigenciaDataInicial"]').val(),
+                vigenciaDataFinal: $('input[name="vigenciaDataFinal"]').val(),
                 capitalSegurado: $('input[name="capitalSegurado"]').val(),
-                coberturas: {
-                    mac: $('.selectpicker#mac').val(),
-                    ipa: $('.selectpicker#ipa').val()
-                },
+                mac: $('.selectpicker#mac').val(),
+                ipa: $('.selectpicker#ipa').val(),
                 entregouApoliceProposta: $('.selectpicker#entregouApoliceProposta').val()
             }));
             location.href = "../documentos/documentos.html";

@@ -1,6 +1,7 @@
 $(function () {
 
     getUsuario();
+    localStorage.setItem('obrigatorio', null);
 
     //Datetimepicker plugin
     $('.datetimepicker').bootstrapMaterialDatePicker({

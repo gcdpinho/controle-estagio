@@ -485,34 +485,15 @@ $(function () {
 
 //Função de logout do sistema
 var logout = function (msgError) {
-    // console.log(msgError);
-    // localStorage.setItem('token', "");
-    // localStorage.setItem('usuario', "");
-    // localStorage.setItem('tag', "");
-    // localStorage.setItem('imagem', "");
-    // localStorage.setItem('video', "");
-    // localStorage.setItem('categoria', "");
-    // localStorage.setItem('noticia', "");
-    // localStorage.setItem('publicidade', "");
-    // localStorage.setItem('aprovacao', "");
-    // localStorage.setItem('not', "");
-    // localStorage.setItem('tagEdit', "");
-    // localStorage.setItem('imagemEdit', "");
-    // localStorage.setItem('videoEdit', "");
-    // localStorage.setItem('categoriaEdit', "");
-    // localStorage.setItem('noticiaEdit', "");
-    // localStorage.setItem('publicidadeEdit', "");
-    // localStorage.setItem('lembrarSenha', "");
-    // if (typeof msgError == "object")
-    //     localStorage.setItem('msgError', "");
-    // else
-    //     localStorage.setItem('msgError', msgError);
     localStorage.clear();
     var path = location.pathname;
-    if (path.indexOf('pages') >= 0)
-        location.href = "../../../../index.html";
+    if (path.indexOf('home') >= 0)
+        location.href = "../../index.html"
+    else if (path.indexOf('listar') >= 0)
+        location.href = "../../../index.html"
     else
-        location.href = "index.html"
+        location.href = "../../../../index.html";
+
 }
 
 $('#logout').click(logout);
@@ -1369,9 +1350,9 @@ var getResultado = function () {
         motivo.push("Com este termo, ultrapassa 2 anos na mesma concedência em PERÍODO E JORNADA");
     if (estagio.modalidade == "Não-Obrigatório" && seguro.cargo == "Inst. Ensino")
         motivo.push("O seguro não pode estar a cargo da Inst. Ensino quando o estágio é não-obrigatório.");
-    if (matricula.formado == "não" && (periodo.cargaHorario.cargaDiaria > 6 || periodo.cargaHorario.cargaSemanal > 30))
+    if (matricula.formado == "não" && (periodo.cargaDiaria > 6 || periodo.cargaSemanal > 30))
         motivo.push("Aluno não formado com carga diária maior que 6 horas ou carga semanal maior que 30 horas");
-    if ((matricula.formado == "sim" && (periodo.cargaHorario.cargaDiaria > 8 || periodo.cargaHorario.cargaSemanal > 40)))
+    if ((matricula.formado == "sim" && (periodo.cargaDiaria > 8 || periodo.cargaSemanal > 40)))
         motivo.push("Aluno formado com carga diária maior que 8 horas ou carga semanal maior que 40 horas");
     if (estagio.modalidade == "Não-Obrigatório") {
         if (naoObrigatorio.auxTransp == "não")
@@ -1380,9 +1361,9 @@ var getResultado = function () {
             motivo.push("Estágio não-obrigatório em que os horários não se distinguem das aulas/dependências");
         if (naoObrigatorio.formatura < periodo.dataFinal)
             motivo.push("Estágio não-obrigatório com data de previsão de formatura menor que a data final do estágio");
-        if (naoObrigatorio.renovando.repFalta == "sim")
+        if (naoObrigatorio.repFalta == "sim")
             motivo.push("Estágio não-obrigatório, renovando, e reprovou por falta");
-        if (naoObrigatorio.renovando.rep50 == "sim")
+        if (naoObrigatorio.rep50 == "sim")
             motivo.push("Estágio não-obrigatório, renovando, e reprovou em mais de 50% das cadeiras");
     }
     if (estagio.modalidade == "Obrigatório" && (curso.sigla == "DES" || curso.sigla == "TSI" || curso.sigla == "TSIAD" || curso.sigla == "DINT" || (curso.sigla == "CVI" && curso.modalidade == "Integrado")))
@@ -1390,20 +1371,20 @@ var getResultado = function () {
             motivo.push("Não há estágio obrigatório para o curso " + curso.sigla + " modalidade " + curso.modalidade);
         else
             motivo.push("Não há estágio obrigatório para o curso " + curso.sigla);
-    if (estagio.modalidade == "Obrigatório" && obrigatorio.renovando.renovadoOrientador == "não")
-        motivo.push("Estágio obrigatório, renovando, com orientador diferente");
+    // if (estagio.modalidade == "Obrigatório" && obrigatorio.renovando.renovadoOrientador == "não")
+    //     motivo.push("Estágio obrigatório, renovando, com orientador diferente");
     if (estagio.modalidade == "Obrigatório") {
         if (obrigatorio.relatorioFinal == "sim")
             motivo.push("Estágio obrigatório e já entregou o relatório final");
         if (obrigatorio.obrigatorio12 == "sim")
             motivo.push("Estágio obrigatório e com este termo ultrapassa 12 meses de obrigatório");
-        if (documentos.tipo == "TCE" && obrigatorio.cargaHorario.cargaCalculada < obrigatorio.cargaHorario.cargaMinima)
+        if (documentos.tipo == "TCE" && obrigatorio.cargaCalculada < obrigatorio.cargaMinima)
             motivo.push("Documento é do tipo TCE e a carga horária calculada é menor que a carga horária mínima");
     }
     if (seguro.cargo == "Concedente" && documentos.tipo == "TCE") {
-        if (seguro.vigencia.vigenciaDataInicial > periodo.dataInicial)
+        if (seguro.vigenciaDataInicial > periodo.dataInicial)
             motivo.push("Seguro a cargo do concedente e documento do tipo TCE com data inicial da vigência do seguro maior que a data inicial em PERÍODO E JORNADA");
-        if (seguro.vigencia.vigenciaDataFinal < periodo.dataFinal)
+        if (seguro.vigenciaDataFinal < periodo.dataFinal)
             motivo.push("Seguro a cargo do concedente e documento do tipo TCE com data final da vigência do seguro menor que a data final em PERÍODO E JORNADA");
         if (seguro.capitalSegurado < 15000)
             motivo.push("Seguro a cargo do concedente e documento do tipo TCE com capital segurado menor que R$ 15.000,00");
@@ -1415,9 +1396,9 @@ var getResultado = function () {
             motivo.push("Seguro a cargo do concedente e documento do tipo TCE e não entregou cópia da apólice e comprovante de pagamento");
     }
     if (seguro.cargo == "Concedente" && documentos.tipo == "TA") {
-        if (seguro.vigencia.vigenciaDataInicial > periodo.dataInicial)
+        if (seguro.vigenciaDataInicial > periodo.dataInicial)
             motivo.push("Seguro a cargo do concedente e documento do tipo TA com data inicial da vigência do seguro maior que a data inicial em PERÍODO E JORNADA");
-        if (seguro.vigencia.vigenciaDataFinal < periodo.dataFinal)
+        if (seguro.vigenciaDataFinal < periodo.dataFinal)
             motivo.push("Seguro a cargo do concedente e documento do tipo TA com data final da vigência do seguro menor que a data final em PERÍODO E JORNADA");
         if (seguro.capitalSegurado < 15000)
             motivo.push("Seguro a cargo do concedente e documento do tipo TA com capital segurado menor que R$ 15.000,00");
@@ -1528,11 +1509,14 @@ $('.naoReceber').click(function () {
 
 var getTable = function () {
     var recebido = JSON.parse(localStorage.getItem('recebido'));
-    var data = [
-        [recebido.conferencia.data, recebido.conferencia.conferente, recebido.aluno.nome,
-            recebido.resultado, recebido.recebimento.data, recebido.recebimento.recebedor, recebido.comentario
-        ]
-    ];
+    if (recebido != null)
+        var data = [
+            [recebido.conferencia.data, recebido.conferencia.conferente, recebido.aluno.nome,
+                recebido.resultado, recebido.recebimento.data, recebido.recebimento.recebedor, recebido.comentario
+            ]
+        ];
+    else
+        var data = [];
     data.push([
         "20/03/2015", "teste", "teste", "NÃO RECEBER", "", "Não Recebido", ""
     ]);

@@ -18,8 +18,8 @@ $(function () {
         $('.selectpicker#constaNumero').selectpicker('val', documentos.constaNumero);
         $('.selectpicker#assinados').selectpicker('val', documentos.assinados);
         $('.selectpicker#dadosCertos').selectpicker('val', documentos.dadosCertos);
-        if (documentos.numVias.pas != null){
-            $('input[name="pas"]').val(documentos.numVias.pas);
+        if (documentos.pas != null) {
+            $('input[name="pas"]').val(documentos.pas);
             $('input[name="pas"]').parents('.form-line').addClass('focused');
         }
 
@@ -79,10 +79,8 @@ $(function () {
         if ($("#documentos").valid()) {
             localStorage.setItem('documentos', JSON.stringify({
                 tipo: $('.selectpicker#tipo').val(),
-                numVias: {
-                    termos: $('input[name="termos"]').val(),
-                    pas: $('input[name="pas"]').val()
-                },
+                termos: $('input[name="termos"]').val(),
+                pas: $('input[name="pas"]').val(),
                 constaNumero: $('.selectpicker#constaNumero').val(),
                 assinados: $('.selectpicker#assinados').val(),
                 dadosCertos: $('.selectpicker#dadosCertos').val()
