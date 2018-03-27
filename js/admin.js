@@ -1388,9 +1388,9 @@ var getResultado = function () {
             motivo.push("Seguro a cargo do concedente e documento do tipo TCE com data final da vigência do seguro menor que a data final em PERÍODO E JORNADA");
         if (seguro.capitalSegurado < 15000)
             motivo.push("Seguro a cargo do concedente e documento do tipo TCE com capital segurado menor que R$ 15.000,00");
-        if (seguro.coberturas.mac == "não")
+        if (seguro.mac == "não")
             motivo.push("Seguro a cargo do concedente e documento do tipo TCE e não possui cobertura mac");
-        if (seguro.coberturas.ipa == "não")
+        if (seguro.ipa == "não")
             motivo.push("Seguro a cargo do concedente e documento do tipo TCE e não possui cobertura ipa");
         if (seguro.entregouApoliceProposta == "não")
             motivo.push("Seguro a cargo do concedente e documento do tipo TCE e não entregou cópia da apólice e comprovante de pagamento");
@@ -1402,9 +1402,9 @@ var getResultado = function () {
             motivo.push("Seguro a cargo do concedente e documento do tipo TA com data final da vigência do seguro menor que a data final em PERÍODO E JORNADA");
         if (seguro.capitalSegurado < 15000)
             motivo.push("Seguro a cargo do concedente e documento do tipo TA com capital segurado menor que R$ 15.000,00");
-        if (seguro.coberturas.mac == "não")
+        if (seguro.mac == "não")
             motivo.push("Seguro a cargo do concedente e documento do tipo TA e não possui cobertura mac");
-        if (seguro.coberturas.ipa == "não")
+        if (seguro.ipa == "não")
             motivo.push("Seguro a cargo do concedente e documento do tipo TA e não possui cobertura ipa");
         if (seguro.entregouApoliceProposta == "não")
             motivo.push("Seguro a cargo do concedente e documento do tipo TA e não entregou cópia da apólice e comprovante de pagamento");
