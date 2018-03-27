@@ -21,9 +21,17 @@ $(function () {
         $(this).valid();
     });
 
-    $('input[name="capitalSegurado"]').inputmask('R$ 99.999,99', {
-        placeholder: 'R$ __.___,__'
-    });
+    $('input[name="capitalSegurado"]').inputmask('decimal', {
+        'alias': 'numeric',
+        'groupSeparator': '.',
+        'autoGroup': true,
+        'digits': 2,
+        'radixPoint': ",",
+        'digitsOptional': false,
+        'allowMinus': false,
+        'prefix': 'R$ ',
+        'placeholder': ''
+});
 
     $('.selectpicker#cargo').on('changed.bs.select', function (e) {
         console.log($(this).val())

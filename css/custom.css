@@ -255,3 +255,7 @@ textarea {
     resize: none;
     min-height: 100px;
  }
+
+ input[name="capitalSegurado"]{
+     text-align: left !important;
+ }
