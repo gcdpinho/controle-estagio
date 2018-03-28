@@ -1230,7 +1230,7 @@ $('.confirmConfirm').click(function () {
         $('div.motivos').parents('.row').css('display', 'none');
     else
         for (var element of resultado.motivo) {
-            $('div.motivos').append("<p>"+element.descricao+"</p>");
+            $('div.motivos').append("<a href='../" + element.link + "/" + element.link + ".html'>" + element.descricao + "</a><br>");
         }
     if (resultado.motivo != null && resultado.motivo != undefined)
         $('textarea[name="motivos"]').attr('rows', resultado.motivo.length);
@@ -1342,7 +1342,9 @@ var getResultado = function () {
             descricao: "Possui outro estágio em andamento",
             link: "estagio"
         });
-    if (periodo.dataFinal <= periodo.dataInicial)
+
+    moment.locale('pt-br');
+    if (moment(periodo.dataFinal, 'DD/MM/YYYY') <= moment(periodo.dataInicial, 'DD/MM/YYYY'))
         motivo.push({
             descricao: "Data final anterior ou igual à data inicial de estágio",
             link: "periodo"
@@ -1393,7 +1395,7 @@ var getResultado = function () {
                 descricao: "O horário do estágio não-obrigatório conflita com o das aulas ou dependências",
                 link: "naoObrigatorio"
             });
-        if (naoObrigatorio.formatura < periodo.dataFinal)
+        if (moment(naoObrigatorio.formatura, 'DD/MM/YYYY') < moment(periodo.dataFinal, 'DD/MM/YYYY'))
             motivo.push({
                 descricao: "A data final do estágio não-obrigatório ultrapassa a previsão de formatura",
                 link: "naoObrigatorio"
@@ -1440,12 +1442,12 @@ var getResultado = function () {
             });
     }
     if (seguro.cargo == "Concedente") {
-        if (seguro.vigenciaDataInicial > periodo.dataInicial)
+        if (moment(seguro.vigenciaDataInicial, 'DD/MM/YYYY') > moment(periodo.dataInicial, 'DD/MM/YYYY'))
             motivo.push({
                 descricao: "O seguro não cobre todo o período de estágio",
                 link: "periodo"
             });
-        if (seguro.vigenciaDataFinal < periodo.dataFinal)
+        if (moment(seguro.vigenciaDataFinal, 'DD/MM/YYYY') < moment(periodo.dataFinal, 'DD/MM/YYYY'))
             motivo.push({
                 descricao: "O seguro não cobre todo o período de estágio",
                 link: "periodo"
@@ -1528,13 +1530,13 @@ var getResultado = function () {
             descricao: "As atividades do estágio não são na área do curso",
             link: "estagio"
         });
-    
-    moment.locale('pt-br');
-    var data1 = moment(Date.parse(periodo.dataInicial), 'DD/MM/YYYY');
-    var data2 = moment(new Date(), 'DD/MM/YYYY');
-    var diff = data2.diff(data1, 'days');
-    if (Math.abs(diff) > 15)
-        motivo.push("Data de conferência do contrato maior que 15 dias do inicio do estágio");
+
+    // moment.locale('pt-br');
+    // var data1 = moment(Date.parse(periodo.dataInicial), 'DD/MM/YYYY');
+    // var data2 = moment(new Date(), 'DD/MM/YYYY');
+    // var diff = data2.diff(data1, 'days');
+    // if (Math.abs(diff) > 15)
+    //     motivo.push("Data de conferência do contrato maior que 15 dias do inicio do estágio");
 
     if (motivo.length > 0)
         return {
