@@ -34,8 +34,7 @@ $(function () {
 });
 
     $('.selectpicker#cargo').on('changed.bs.select', function (e) {
-        console.log($(this).val())
-        if ($(this).val() != "Agente Integr.")
+        if ($(this).val() != "Agente Integr." && $(this).val() != "Inst. Ensino")
             $('.seguro-display').css('display', 'block');
         else
             $('.seguro-display').css('display', 'none');
@@ -45,7 +44,7 @@ $(function () {
     var seguro = JSON.parse(localStorage.getItem('seguro'));
     if (seguro != null) {
         $('.selectpicker#cargo').selectpicker('val', seguro.cargo);
-        if (seguro.cargo != "Agente Integr.")
+        if (seguro.cargo != "Agente Integr." && seguro.cargo != "Inst. Ensino")
             $('.seguro-display').css('display', 'block');
         $('input[name="vigenciaDataInicial"]').val(seguro.vigenciaDataInicial);
         $('input[name="vigenciaDataInicial"]').parents('.form-line').addClass('focused');

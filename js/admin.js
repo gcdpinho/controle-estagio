@@ -1227,10 +1227,10 @@ $('.confirmConfirm').click(function () {
     console.log(resultado);
     $('input[name="resultado"]').val(resultado.mensagem);
     if (resultado.motivo == null || resultado.motivo == undefined)
-        $('textarea[name="motivos"]').parents('.row').css('display', 'none');
+        $('div.motivos').parents('.row').css('display', 'none');
     else
         for (var element of resultado.motivo) {
-            $('textarea[name="motivos"]').val($('textarea[name="motivos"]').val() + "\n" + element);
+            $('div.motivos').append("<p>"+element.descricao+"</p>");
         }
     if (resultado.motivo != null && resultado.motivo != undefined)
         $('textarea[name="motivos"]').attr('rows', resultado.motivo.length);
