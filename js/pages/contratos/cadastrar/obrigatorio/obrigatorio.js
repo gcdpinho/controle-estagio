@@ -19,7 +19,7 @@ $(function () {
 
     $('input[name="diasUteis"]').on('input', function () {
         if ($(this).val() != "") {
-            $('input[name="cargaCalculada"]').val($(this).val() * periodo.cargaDiaria)
+            $('input[name="cargaCalculada"]').val(($(this).val() * periodo.cargaDiaria).toFixed(2));
             $('input[name="cargaCalculada"]').parents('.form-line').addClass('focused');
         }
     });
