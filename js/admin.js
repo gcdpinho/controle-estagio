@@ -1336,116 +1336,199 @@ var getResultado = function () {
     var obrigatorio = JSON.parse(localStorage.getItem('obrigatorio'));
     var naoObrigatorio = JSON.parse(localStorage.getItem('naoObrigatorio'));
     var motivo = [];
+
     if (estagio.outro == "sim")
-        motivo.push("Possui outro estágio em andamento");
+        motivo.push({
+            descricao: "Possui outro estágio em andamento",
+            link: "estagio"
+        });
     if (periodo.dataFinal <= periodo.dataInicial)
-        motivo.push("Data final menor ou igual a data inicial de PERÍODO E JORNADA");
+        motivo.push({
+            descricao: "Data final anterior ou igual à data inicial de estágio",
+            link: "periodo"
+        });
     if (documentos.assinados == "não")
-        motivo.push("Documentos não estão devidamentes assinados");
+        motivo.push({
+            descricao: "Documentos não estão devidamentes assinados",
+            link: "documentos"
+        });
     if (documentos.dadosCertos == "não")
-        motivo.push("Os dados dos Documentos não estão certos");
+        motivo.push({
+            descricao: "Os dados dos documentos não estão certos",
+            link: "documentos"
+        });
     if (documentos.constaNumero == "não")
-        motivo.push("Documento não consta CNPJ/CREA conforme site");
+        motivo.push({
+            descricao: "CNPJ/CREA incorreto ou inexistente",
+            link: "documentos"
+        });
     if (periodo.doisAnos == "sim")
-        motivo.push("Com este termo, ultrapassa 2 anos na mesma concedência em PERÍODO E JORNADA");
+        motivo.push({
+            descricao: "Ultrapassa 2 anos de estágio na mesma concedente",
+            link: "periodo"
+        });
     if (estagio.modalidade == "Não-Obrigatório" && seguro.cargo == "Inst. Ensino")
-        motivo.push("O seguro não pode estar a cargo da Inst. Ensino quando o estágio é não-obrigatório.");
+        motivo.push({
+            descricao: "O seguro não pode estar a cargo da Instituição de Ensino quando o estágio é não-obrigatório",
+            link: "seguro"
+        });
     if (matricula.formado == "não" && (periodo.cargaDiaria > 6 || periodo.cargaSemanal > 30))
-        motivo.push("Aluno não formado com carga diária maior que 6 horas ou carga semanal maior que 30 horas");
+        motivo.push({
+            descricao: "Enquanto não concluída a parte teórica do curso, a carga horária máxima diária é de 6h e semanal de 30h",
+            link: "periodo"
+        });
     if ((matricula.formado == "sim" && (periodo.cargaDiaria > 8 || periodo.cargaSemanal > 40)))
-        motivo.push("Aluno formado com carga diária maior que 8 horas ou carga semanal maior que 40 horas");
+        motivo.push({
+            descricao: "Concluída a parte teória do curso, a carga horária máxima diária é de 8h e semanal de 40h",
+            link: "periodo"
+        });
     if (estagio.modalidade == "Não-Obrigatório") {
         if (naoObrigatorio.auxTransp == "não")
-            motivo.push("Estágio não-obrigatório sem auxílio transporte");
+            motivo.push({
+                descricao: "Estágio não-obrigatório sem auxílio-transporte",
+                link: "naoObrigatorio"
+            });
         if (naoObrigatorio.horarioDist == "não")
-            motivo.push("Estágio não-obrigatório em que os horários não se distinguem das aulas/dependências");
+            motivo.push({
+                descricao: "O horário do estágio não-obrigatório conflita com o das aulas ou dependências",
+                link: "naoObrigatorio"
+            });
         if (naoObrigatorio.formatura < periodo.dataFinal)
-            motivo.push("Estágio não-obrigatório com data de previsão de formatura menor que a data final do estágio");
+            motivo.push({
+                descricao: "A data final do estágio não-obrigatório ultrapassa a previsão de formatura",
+                link: "naoObrigatorio"
+            });
         if (naoObrigatorio.repFalta == "sim")
-            motivo.push("Estágio não-obrigatório, renovando, e reprovou por falta");
+            motivo.push({
+                descricao: "Frequência insuficiente para renovar estágio não-obrigatório",
+                link: "naoObrigatorio"
+            });
         if (naoObrigatorio.rep50 == "sim")
-            motivo.push("Estágio não-obrigatório, renovando, e reprovou em mais de 50% das cadeiras");
+            motivo.push({
+                descricao: "Rendimento insuficiente para renovar estágio não-obrigatório",
+                link: "naoObrigatorio"
+            });
     }
     if (estagio.modalidade == "Obrigatório" && (curso.sigla == "DES" || curso.sigla == "TSI" || curso.sigla == "TSIAD" || curso.sigla == "DINT" || (curso.sigla == "CVI" && curso.modalidade == "Integrado")))
         if (curso.sigla == "CVI")
-            motivo.push("Não há estágio obrigatório para o curso " + curso.sigla + " modalidade " + curso.modalidade);
+            motivo.push({
+                descricao: "O projeto do curso " + curso.sigla + ", modalidade " + curso.modalidade + ", não prevê estágio obrigatório",
+                link: "estagio"
+            });
         else
-            motivo.push("Não há estágio obrigatório para o curso " + curso.sigla);
+            motivo.push({
+                descricao: "O projeto do curso " + curso.sigla + " não prevê estágio obrigatório",
+                link: "estagio"
+            });
     // if (estagio.modalidade == "Obrigatório" && obrigatorio.renovando.renovadoOrientador == "não")
     //     motivo.push("Estágio obrigatório, renovando, com orientador diferente");
     if (estagio.modalidade == "Obrigatório") {
         if (obrigatorio.relatorioFinal == "sim")
-            motivo.push("Estágio obrigatório e já entregou o relatório final");
+            motivo.push({
+                descricao: "Não é possível realizar outro estágio obrigatório após a entrega do relatório final",
+                link: "obrigatorio"
+            });
         if (obrigatorio.obrigatorio12 == "sim")
-            motivo.push("Estágio obrigatório e com este termo ultrapassa 12 meses de obrigatório");
+            motivo.push({
+                descricao: "A duração máxima de estágio obrigatório é de 1 ano",
+                link: "obrigatorio"
+            });
         if (documentos.tipo == "TCE" && obrigatorio.cargaCalculada < obrigatorio.cargaMinima)
-            motivo.push("Documento é do tipo TCE e a carga horária calculada é menor que a carga horária mínima");
+            motivo.push({
+                descricao: "A carga horária calculada é menor do que a carga horária mínima do curso",
+                link: "obrigatorio"
+            });
     }
-    if (seguro.cargo == "Concedente" && documentos.tipo == "TCE") {
+    if (seguro.cargo == "Concedente") {
         if (seguro.vigenciaDataInicial > periodo.dataInicial)
-            motivo.push("Seguro a cargo do concedente e documento do tipo TCE com data inicial da vigência do seguro maior que a data inicial em PERÍODO E JORNADA");
+            motivo.push({
+                descricao: "O seguro não cobre todo o período de estágio",
+                link: "periodo"
+            });
         if (seguro.vigenciaDataFinal < periodo.dataFinal)
-            motivo.push("Seguro a cargo do concedente e documento do tipo TCE com data final da vigência do seguro menor que a data final em PERÍODO E JORNADA");
+            motivo.push({
+                descricao: "O seguro não cobre todo o período de estágio",
+                link: "periodo"
+            });
         if (seguro.capitalSegurado < 15000)
-            motivo.push("Seguro a cargo do concedente e documento do tipo TCE com capital segurado menor que R$ 15.000,00");
+            motivo.push({
+                descricao: "O capital segurado é menor do que R$ 15.000,00",
+                link: "seguro"
+            });
         if (seguro.mac == "não")
-            motivo.push("Seguro a cargo do concedente e documento do tipo TCE e não possui cobertura mac");
+            motivo.push({
+                descricao: "O seguro não possui cobertura para Morte Acidental",
+                link: "seguro"
+            });
         if (seguro.ipa == "não")
-            motivo.push("Seguro a cargo do concedente e documento do tipo TCE e não possui cobertura ipa");
-        if (seguro.entregouApoliceProposta == "não")
-            motivo.push("Seguro a cargo do concedente e documento do tipo TCE e não entregou cópia da apólice e comprovante de pagamento");
+            motivo.push({
+                descricao: "O seguro não possui cobertura para Invalidez Permanente parcial ou total por Acidente",
+                link: "seguro"
+            });
+        if (seguro.entregouApoliceProposta == "não" && documentos.tipo == "TCE")
+            motivo.push({
+                descricao: "Falta cópia da apólice ou proposta e comprovante de pagamento",
+                link: "seguro"
+            });
     }
-    if (seguro.cargo == "Concedente" && documentos.tipo == "TA") {
-        if (seguro.vigenciaDataInicial > periodo.dataInicial)
-            motivo.push("Seguro a cargo do concedente e documento do tipo TA com data inicial da vigência do seguro maior que a data inicial em PERÍODO E JORNADA");
-        if (seguro.vigenciaDataFinal < periodo.dataFinal)
-            motivo.push("Seguro a cargo do concedente e documento do tipo TA com data final da vigência do seguro menor que a data final em PERÍODO E JORNADA");
-        if (seguro.capitalSegurado < 15000)
-            motivo.push("Seguro a cargo do concedente e documento do tipo TA com capital segurado menor que R$ 15.000,00");
-        if (seguro.mac == "não")
-            motivo.push("Seguro a cargo do concedente e documento do tipo TA e não possui cobertura mac");
-        if (seguro.ipa == "não")
-            motivo.push("Seguro a cargo do concedente e documento do tipo TA e não possui cobertura ipa");
-        if (seguro.entregouApoliceProposta == "não")
-            motivo.push("Seguro a cargo do concedente e documento do tipo TA e não entregou cópia da apólice e comprovante de pagamento");
+
+    if (estagio.modalidade == "Obrigatório" && curso.modalidade == "Integrado" && matricula.formado == "não") {
+        if ((matricula.semestre < 7))
+            motivo.push({
+                descricao: "O aluno não está matriculado em semestre apto para realizar o estágio obrigatório (7º ou 8º semestre de curso Integrado)",
+                link: "matricula"
+            });
+        else
+        if (matricula.semestre == 7 && matricula.dependencia == "sim")
+            motivo.push({
+                descricao: "O aluno não está apto a realizar estágio obrigatório (possui dependência no 7º semestre de curso Integrado)",
+                link: "matricula"
+            });
     }
-    if (estagio.modalidade == "Obrigatório" && curso.modalidade == "Integrado" && matricula.semestre < 7 && matricula.formado == "não")
-        motivo.push("Estágio obrigário, de curso com modalidade Integrado, aluno em um semestre menor que 7 e não conclui a parte teórica do curso");
-    if (estagio.modalidade == "Obrigatório" && curso.modalidade == "Integrado" && matricula.semestre == 7 && matricula.dependencia == "sim" && matricula.formado == "não")
-        motivo.push("Estágio obrigário, de curso com modalidade Integrado, aluno no semestre 7, com dependência e não conclui a parte teórica do curso");
     if (curso.sigla == "MEC" && estagio.modalidade == "Obrigatório" && (curso.modalidade == "Concomitante" || curso.modalidade == "Subsequente") && matricula.formado == "não") {
         if (matricula.semestre < 2)
-            motivo.push("Estágio obrigário, de curso MEC com modalidade " + curso.modalidade + " , aluno não conclui a parte teórica do curso e está em um semestre menor que 2");
+            motivo.push({
+                descricao: "O aluno não está matriculado em semestre apto para realizar o estágio obrigatório (2º ao 4º semestre do curso de MEC " + curso.modalidade + " )",
+                link: "matricula"
+            });
         else
         if (matricula.semestre == 2 && matricula.dependencia == "sim")
-            motivo.push("Estágio obrigário, de curso MEC com modalidade " + curso.modalidade + " , aluno não conclui a parte teórica do curso e está no semestre 2, com dependência");
+            motivo.push({
+                descricao: "O aluno não está apto a realizar estágio obrigatório (possui dependência no 2º semestre do curso de MEC " + curso.modalidade + ")",
+                link: "matricula"
+            });
     }
     if (curso.sigla == "EDI" && estagio.modalidade == "Obrigatório" && curso.modalidade == "Subsequente" && matricula.formado == "não") {
         if (matricula.semestre < 4)
-            motivo.push("Estágio obrigário, de curso EDI com modalidade Subsequente, aluno não conclui a parte teórica do curso e está em um semestre menor que 4");
+            motivo.push({
+                descricao: "O aluno não está matriculado em semestre apto para realizar o estágio obrigatório (4º ou 5º semestre do curso de EDI " + curso.modalidade + ")",
+                link: "matricula"
+            });
         else if (matricula.semestre == 4 && matricula.dependencia == "sim")
-            motivo.push("Estágio obrigário, de curso EDI com modalidade Subsequente, aluno não conclui a parte teórica do curso e está no semestre 4, com depenência");
+            motivo.push({
+                descricao: "O aluno não está apto a realizar estágio obrigatório (possui dependência no 4º semestre do curso de EDI " + curso.modalidade + ")",
+                link: "matricula"
+            });
     }
     if ((curso.sigla == "TRO" || curso.sigla == "EME" || curso.sigla == "QUI" || curso.sigla == "TEL" || curso.sigla == "CVI") && estagio.modalidade == "Obrigatório" &&
-        (curso.modalidade == "Subsequente" || curso.modalidade == "Concomitante"))
-        motivo.push("Estágio obrigário, de curso " + curso.sigla + " com modalidade " + curso.modalidade);
-    if (matricula.semestre < 3)
-        motivo.push("Estágio obrigário, aluno está em um semestre menor que 3");
-    if (matricula.semestre == 3 && matricula.dependencia == "sim")
-        motivo.push("Estágio obrigário, aluno está no semestre 3, com dependência");
-    if (matricula.formado == "não")
-        motivo.push("Estágio obrigário, aluno não concluiu a parte teórica do curso");
-    if (estagio.area == "não" && curso.modalidade == "Integrado" && estagio.modalidade == "Obrigatório")
-        motivo.push("Estágio obrigário, modalidade Integrado e estágio não é na área");
-    if (estagio.area == "não" && curso.modalidade == "Subsequente")
-        motivo.push("Estágio não é na área e modalidade do curso é Subsequente");
-    if (estagio.area == "não" && curso.modalidade == "Concomitante")
-        motivo.push("Estágio não é na área e modalidade do curso é Concomitante");
-    if (estagio.area == "não" && curso.modalidade == "Superior")
-        motivo.push("Estágio não é na área e modalidade do curso é Superior");
-    if (estagio.area == "não" && curso.modalidade == "Pós")
-        motivo.push("Estágio não é na área e modalidade do curso é Pós");
-
+        (curso.modalidade == "Subsequente" || curso.modalidade == "Concomitante") && matricula.formado == "não") {
+        if (matricula.semestre < 3)
+            motivo.push({
+                descricao: "O aluno não está matriculado em semestre apto para realizar o estágio obrigatório (3º ou 4º semestre do curso de " + curso.sigla + " " + curso.modalidade + ")",
+                link: "matricula"
+            });
+        if (matricula.semestre == 3 && matricula.dependencia == "sim")
+            motivo.push({
+                descricao: "O aluno não está apto a realizar estágio obrigatório (possui dependência no (3º semestre do curso de " + curso.sigla + " " + curso.modalidade + ")",
+                link: "matricula"
+            });
+    }
+    if (estagio.area == "não" && (curso.modalidade != "Integrado" && estagio.modalidade != "Não-Obrigatório"))
+        motivo.push({
+            descricao: "As atividades do estágio não são na área do curso",
+            link: "estagio"
+        });
+    
     moment.locale('pt-br');
     var data1 = moment(Date.parse(periodo.dataInicial), 'DD/MM/YYYY');
     var data2 = moment(new Date(), 'DD/MM/YYYY');

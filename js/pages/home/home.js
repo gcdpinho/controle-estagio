@@ -11,7 +11,7 @@
 
 
     $('.page-loader-wrapper').fadeOut();
-    //new Chart(document.getElementById("line_chart").getContext("2d"), getChartJs('line'));
+    new Chart(document.getElementById("bar_chart_other").getContext("2d"), getChartJs('bar_other'));
     new Chart(document.getElementById("bar_chart").getContext("2d"), getChartJs('bar'));
     new Chart(document.getElementById("pie_chart_other").getContext("2d"), getChartJs('pie_other'));
     new Chart(document.getElementById("pie_chart").getContext("2d"), getChartJs('pie'));
@@ -97,7 +97,7 @@ function getChartJs(type) {
                         1,
                         1,
                         3
-                        ],
+                    ],
                     borderColor: 'rgba(233, 30, 99, 0.75)',
                     backgroundColor: 'rgba(233, 30, 99, 0.3)',
                     pointBorderColor: 'rgba(233, 30, 99, 0)',
@@ -122,16 +122,24 @@ function getChartJs(type) {
                         94,
                         97,
                         100,
-                        83,
-                        67,
+                        100,
+                        92,
                         94
-                        ],
+                    ],
                     backgroundColor: 'rgba(0, 188, 212, 0.8)'
                 }]
             },
             options: {
                 responsive: true,
-                legend: false
+                legend: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            stepSize: 10,
+                        }
+                    }]
+                }
             }
         }
     } else if (type === 'radar') {
@@ -224,7 +232,7 @@ function getChartJs(type) {
                         3,
                         2,
                         2
-                        
+
                     ],
                     backgroundColor: [
                         "rgb(233, 30, 99)",
@@ -253,18 +261,62 @@ function getChartJs(type) {
                     "Pinheiro Machado",
                     "Arroio Grande",
                     "Santana da Boa Vista",
-                    "Porto Alegre", 
-                    "Canguçu", 
-                    "Ijuí", 
-                    "Piratini", 
-                    "Horizontina", 
-                    "Morro Redondo", 
+                    "Porto Alegre",
+                    "Canguçu",
+                    "Ijuí",
+                    "Piratini",
+                    "Horizontina",
+                    "Morro Redondo",
                     "Cerrito"
                 ]
             },
             options: {
                 responsive: true,
                 legend: false
+            }
+        }
+    } else if (type === 'bar_other') {
+        config = {
+            type: 'bar',
+            data: {
+                labels: ["Natalia", "Laura", "Lucas", "Thamiris", "Mariana", "Gabriel", "Tamires", "Outros"],
+                datasets: [{
+                    label: "Obrigatório",
+                    data: [4,
+                        12,
+                        10,
+                        22,
+                        12,
+                        3,
+                        1,
+                        32
+                    ],
+                    backgroundColor: 'rgba(0, 188, 212, 0.8)'
+                }, {
+                    label: "Não-Obrigatório",
+                    data: [11,
+                        6,
+                        6,
+                        14,
+                        6,
+                        3,
+                        2,
+                        22
+                    ],
+                    backgroundColor: 'rgba(233, 30, 99, 0.8)'
+                }]
+            },
+            options: {
+                responsive: true,
+                legend: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            stepSize: 5,
+                        }
+                    }]
+                }
             }
         }
     }

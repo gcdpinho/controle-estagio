@@ -151,3 +151,7 @@ if (estagio.outro == "sim" || periodo.dataFinal <= periodo.dataInicial || docume
     return "Receber apenas c/ assinatura do responsável e se horário não ultrapassar as 22h, em princípio";
     else 
         return "NÃO RECEBER"
+
+
+
+        if (fu & & OU())
